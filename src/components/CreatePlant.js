@@ -4,6 +4,7 @@ import axios from 'axios';
 
 
 const PLANT_API = 'http://localhost:3000/plants.json';
+const PLANT_IMAGE_API = 'http://localhost:3000/plants/';
 
 class CreatePlant extends Component {
   constructor(){
@@ -13,6 +14,7 @@ class CreatePlant extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this);
   }
 
 
@@ -20,20 +22,27 @@ class CreatePlant extends Component {
       this.setState({ [event.target.name]: event.target.value});
   }
 
+  handleFileChange(event) {
+    this.setState({ file: event.target.files[0] });
+  }
 
   handleSubmit(event) {
 
-      alert('Plant added : ' + this.state.name);
-
-      const { name, age, status, cost, worth, description } = this.state;
-
-      const plant = { name, age, status, cost, worth, description }
+      const { name,image, age, status, cost, worth, description } = this.state;
+      const plant = { name, image, age, status, cost, worth, description }
 
       console.log(plant);
 
       axios.post(PLANT_API, plant)
         .then(result => {
-          alert('Saved successfully');
+
+          const file = new FormData();
+          file.append('file', this.state.file);
+          axios.put(PLANT_IMAGE_API + result.data.id + '.json', file)
+            .then(res => {
+              this.props.history.push('/plants');
+            })
+
         })
         .catch(error => {
           console.log(error);
@@ -50,6 +59,10 @@ class CreatePlant extends Component {
             <label>
               Name:
               <input type="text" name="name" onChange={this.handleChange} />
+            </label><br/>
+            <label>
+              image:
+                <input type="file" name="file" onChange={this.handleFileChange} />
             </label><br/>
             <label>
               Age:

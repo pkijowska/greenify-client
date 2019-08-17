@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 import axios from 'axios';
 
 const SERVER_URL = 'http://localhost:3000/plants.json'
@@ -36,7 +37,9 @@ class Gallery extends Component {
     return(
       <div>
 {this.props.plants.map((plant) => <p key={plant.id}> {plant.name}
-   <Link to={ "/plant/" + plant.id }><img src={plant.images} /> </Link>
+   <Link to={ "/plant/" + plant.id }>
+   <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" />
+   </Link>
 </p>)
 }
       </div>
