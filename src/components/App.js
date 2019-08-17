@@ -1,4 +1,5 @@
 import React from 'react';
+// import PlantContainer from './PlantContainer';
 import { Link } from 'react-router-dom';
 
 function App() {
