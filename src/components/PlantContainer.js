@@ -36,7 +36,7 @@ class Gallery extends Component {
     return(
       <div>
 {this.props.plants.map((plant) => <p key={plant.id}> {plant.name}
-   <Link to={ "/plant/" + plant.id }><img src={plant.images} /> </Link>
+   <Link to={ "/plants/" + plant.id }><img src={plant.images} alt="plants" /> </Link>
 </p>)
 }
       </div>
