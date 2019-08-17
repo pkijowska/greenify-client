@@ -6,6 +6,7 @@ function App() {
   return (
     <div className="App">
         <div><Link to="/">home</Link></div>
+        <div><Link to="/plants/new">Add Plant</Link></div>
     </div>
   );
 }
