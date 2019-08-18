@@ -38,7 +38,10 @@ class CreatePlant extends Component {
         .then(result => {
 
           const file = new FormData();
-          file.append('file', this.state.file);
+          if(this.state.file){
+            file.append('file', this.state.file);
+          }
+
           axios.put(PLANT_IMAGE_API + result.data.id + '.json', file)
             .then(res => {
               this.props.history.push('/plants');
