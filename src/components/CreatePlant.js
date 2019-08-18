@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import PlantForm from './PlantForm';
 
 
 const PLANT_API = 'http://localhost:3000/plants.json';
@@ -37,7 +38,10 @@ class CreatePlant extends Component {
         .then(result => {
 
           const file = new FormData();
-          file.append('file', this.state.file);
+          if(this.state.file){
+            file.append('file', this.state.file);
+          }
+
           axios.put(PLANT_IMAGE_API + result.data.id + '.json', file)
             .then(res => {
               this.props.history.push('/plants');
@@ -54,39 +58,15 @@ class CreatePlant extends Component {
   render() {
     return (
       <div>
-          <h2>Create a new Plant</h2>
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              Name:
-              <input type="text" name="name" onChange={this.handleChange} />
-            </label><br/>
-            <label>
-              image:
-                <input type="file" name="file" onChange={this.handleFileChange} />
-            </label><br/>
-            <label>
-              Age:
-                <input type="text" name="age" onChange={this.handleChange} />
-            </label><br/>
-            <label>
-              Status:
-                <input type="text" name="status" onChange={this.handleChange} />
-            </label><br/>
-            <label>
-              Cost:
-                <input type="text" name="cost" onChange={this.handleChange}/>
-            </label><br/>
-            <label>
-              Worth:
-                <input type="text" name="worth" onChange={this.handleChange}/>
-            </label><br/>
-            <label>
-              Desciption:
-                <textarea name="description" onChange={this.handleChange}/>
-            </label><br/>
-              <input type="submit" value="Add Plant" />
-            </form>
-        </div>
+        <h2> Create New Plant </h2>
+        <PlantForm
+          heading = "Create New Plant"
+          onTextChange={this.handleChange}
+          onFileChange={this.handleFileChange}
+          onSubmit={this.handleSubmit}
+          buttonLabel = "Add Plant"
+          plant={{}} />
+      </div>
 
     )
   }
