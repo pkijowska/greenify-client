@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 import axios from 'axios';
 
 const SERVER_URL = 'http://localhost:3000/plants.json'
@@ -57,18 +58,10 @@ class Gallery extends Component {
   render() {
     return(
       <div>
-
-      <form onSubmit={this._handleSubmit}>
-      <label htmlFor="query">
-            <p>Search:</p>
-            <input type="search" id="query" onInput={ this._handleInputSearch } />
-          </label>
-      <input type="submit" value="Search" />
-
-            </form>
-
-  {this.props.plants.map((plant) => <p key={plant.id}> {plant.name}
-   <Link to={ "/plants/" + plant.id }><img src={plant.images} alt="plants" /> </Link>
+{this.props.plants.map((plant) => <p key={plant.id}> {plant.name}
+   <Link to={ "/plants/" + plant.id }>
+   <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" />
+   </Link>
 </p>)
 }
       </div>
