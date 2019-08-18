@@ -21,9 +21,9 @@ const Routes = (
         <Route exact path="/" component= { App } />
         <Route exact path="/plants" component= { PlantContainer } />
         <Route exact path="/plants/new" component= { CreatePlant } />
-        <Route exact path="/plants/:id" component={PlantInfo} />
+        <Route exact path="/plants/:id" component={ PlantInfo } />
 
-        
+
         <Route exact path="/allplantstest" component= { AllPlantsTest } />
         <Route exact path="/SignUp" component= { SignUp } />
         <Route path="/plants/:id" component= { PlantsTest } />
