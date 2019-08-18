@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Image } from 'cloudinary-react';
+
 const SERVER_URL = 'http://localhost:3000/plants/7.json'
 
 
@@ -32,7 +34,7 @@ render(){
     <div>
     <h1> Plant {this.props.match.params.id}</h1>
     <p>{this.state.plantInfo.name}</p>
-    <img src={this.state.plantInfo.images} alt="plants" />
+    <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images} width="300" />
     <p>{this.state.plantInfo.age}</p>
     <p>{this.state.plantInfo.cost} </p>
     <p>{this.state.plantInfo.worth} </p>
