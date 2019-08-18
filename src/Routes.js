@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import App from './components/App';
 import Header from './components/Header';
@@ -11,17 +11,22 @@ import AllPlantsTest from './components/AllPlantsTest';
 import PlantsTest from './components/PlantsTest';
 import PlantContainer from './components/PlantContainer';
 import CreatePlant from './components/CreatePlant';
+import EditPlant from './components/EditPlant';
+
 import PlantInfo from './components/PlantInfo';
+
 
 // TODO: make Header refresh like the rest of the pages. e.g. when you logout it wont refresh the navbar automatically.
 const Routes = (
     <Router>
     <Header />
       <div>
+      <Switch>
         <Route exact path="/" component= { App } />
         <Route exact path="/plants" component= { PlantContainer } />
         <Route exact path="/plants/new" component= { CreatePlant } />
         <Route exact path="/plants/:id" component={ PlantInfo } />
+        <Route exact path="/plants/:id/edit" component= { EditPlant } />
 
 
         <Route exact path="/allplantstest" component= { AllPlantsTest } />
@@ -32,6 +37,7 @@ const Routes = (
             :
             <Route exact path="/SignIn" component= { SignIn } />
         }
+      </Switch>
       </div>
       <Footer />
     </Router>

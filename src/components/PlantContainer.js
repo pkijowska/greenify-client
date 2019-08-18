@@ -59,7 +59,7 @@ const fetchPlants =() => {
         <input type="submit" value="Filter" />
         </form>
 
-        <Gallery plants={this.state.plants}/>
+        <Gallery plants={this.state.plants} query={this.state.query}/>
       </div>
     )
   }
@@ -72,11 +72,27 @@ class Gallery extends Component {
     return(
 
       <div>
-        {this.props.plants.map((plant) => <p key={plant.id}> {plant.name}
-           <Link to={ "/plants/" + plant.id }>
-           <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" />
-           </Link>
-        </p>)
+
+
+        {this.props.plants.map((plant) => {
+
+          const plantpara = <p key={plant.id}>
+             {plant.name}
+             <Link to={ "/plants/" + plant.id }>
+             <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" />
+             </Link>
+           </p>;
+console.log(this.props.query);
+const query = this.props.query.toLowerCase();
+const name = plant.name.toLowerCase();
+
+if (name.indexOf(query) !== -1){
+  return plantpara;
+}
+
+
+
+       })
             }
     </div>
     )
