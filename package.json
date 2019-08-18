@@ -4,6 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+<<<<<<< HEAD
+=======
+    "cloudinary-react": "^1.1.4",
+>>>>>>> 57570eb431b80467fd85b5e7bc9a36b94c7364de
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-router": "^5.0.1",
