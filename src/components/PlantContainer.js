@@ -42,11 +42,7 @@ class PlantContainer extends Component {
 
   render(){
     return(
-      <div>
-        <button><Link to="/">Go back!</Link></button>
-
-
-
+      <div className="centerForm">
         <h2>This is a plant area. See our plants:</h2>
         <form onSubmit={this._handleSubmit}>
 
@@ -68,16 +64,13 @@ class PlantContainer extends Component {
 class Gallery extends Component {
   render() {
     return(
-
-      <div>
-
-
+      <div className="allPlantsGrid">
         {this.props.plants.map((plant) => {
 
           const plantpara = <p key={plant.id}>
              {plant.name}
              <Link to={ "/plants/" + plant.id }>
-             <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" />
+             <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
              </Link>
            </p>;
            console.log(this.props.query);
@@ -88,7 +81,7 @@ class Gallery extends Component {
               return plantpara;
             }
        })
-            }
+      }
     </div>
     )
   }

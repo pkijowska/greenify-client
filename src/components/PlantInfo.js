@@ -33,7 +33,7 @@ constructor(props){
 
 render(){
   return(
-    <div>
+    <div className="centerForm">
     <h1> Plant {this.props.match.params.id}</h1>
     <div><Link to={"/plants/"+ this.props.match.params.id +"/edit"}>Edit Plant</Link></div>
     <p>{this.state.plantInfo.name}</p>

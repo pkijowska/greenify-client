@@ -4,7 +4,7 @@ import React, {Component} from 'react';
 class PlantForm extends Component {
  render() {
      return (
-       <div>
+       <div className="centerForm">
            <form onSubmit={this.props.onSubmit}>
              <label>
                Name:

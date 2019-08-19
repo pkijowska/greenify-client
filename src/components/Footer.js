@@ -13,8 +13,21 @@ class Footer extends Component {
 
   render() {
     return (
-      <div style={{color: "white", padding: "15px 0", marginTop: "40px", borderTop: "1px solid grey", backgroundColor: "grey"}}>
-        c. greenify 2019
+      <div className="footer">
+      <span>&copy; greenify 2019</span>
+      <div className="footerPos">
+
+        <div class="plantContainer">
+          <div class="plant">
+          	<div class="branch"></div>
+          	<div class="branch"></div>
+          	<div class="branch"></div>
+          	<div class="branch"></div>
+          	<div class="branch"></div>
+          	<div class="branch"></div>
+          </div>
+        </div>
+        </div>
       </div>)
   }
 }

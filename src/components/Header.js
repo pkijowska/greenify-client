@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../images/leaf_dark.png';
+import logo_green from '../images/leaf_green.png';
 
 // Created this class to test authentication.
 // Only shows all plants if you have logged in, otherwise you are not allowed.
@@ -8,26 +10,41 @@ class Header extends Component {
   constructor () {
     super();
     this.state = {
-
+      image: ""
     }
+
+    this._handleHover = this._handleHover.bind(this);
+    this._handleOut = this._handleOut.bind(this);
+  }
+
+  _handleHover () {
+    console.log("hover");
+    this.setState({image: logo_green });
+  }
+
+  _handleOut () {
+    console.log("out");
+    this.setState({image: logo });
   }
 
   render() {
     return (
-      <div>
-        <h1>greenify</h1>
-        <Link to="/">Home</Link> |
-        <Link to="/plants">Plants</Link> |
-        <Link to="/plants/new">Add Plant</Link> |
-        <Link to="/users">Users</Link> |
+      <div className="nav">
+        <h1 onMouseOver={ this._handleHover } onMouseOut={ this._handleOut } >greenify<img src={ this.state.image } className="logo" /></h1>
+        <div className="links">
+          <Link to="/">Home</Link>
+          <Link to="/plants">Plants</Link>
+          <Link to="/plants/new">Add Plant</Link>
+          <Link to="/users">Users</Link>
 
-        { localStorage.getItem("jwt") ?
+          { localStorage.getItem("jwt") ?
 
-            <Link to="/SignOut">Sign Out</Link>
-            :
-            <span><Link to="/SignIn">Sign In</Link> or
-            <Link to="/SignUp"> Sign Up</Link></span>
-        }
+              <Link to="/SignOut">Sign Out</Link>
+              :
+              <span><Link to="/SignIn">Sign In</Link> or
+              <Link to="/SignUp"> Sign Up</Link></span>
+          }
+        </div>
       </div>)
   }
 }

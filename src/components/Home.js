@@ -3,7 +3,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import feature from '../images/plant_feature.png';
 
-function App() {
+function Home() {
   return (
     <div>
         <img src={ feature } className="featureImage" />
@@ -11,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;
