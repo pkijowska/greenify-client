@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Coiny');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -11,3 +13,133 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+<<<<<<< HEAD
+=======
+
+img {
+  max-width: 250px;
+  max-height: 250px;
+  display: block;
+}
+
+
+
+.plant {
+    position: relative;
+    /* margin-bottom: 42%; */
+    width: 80px;
+    height: -2px;
+    left: 67%;
+    transform: translate(-50%, -50%);
+}
+
+
+
+
+
+
+/*plant*/
+.branch {
+  animation:sway 5s infinite linear alternate;
+  border-bottom:none;
+  border-left:solid 6px #060;
+  border-right:none;
+  border-top:none;
+  border-top-left-radius:100%;
+  bottom:0;
+  height:250px;
+  left:25%;
+  position:absolute;
+  transform-origin:bottom;
+  width:50px;
+}
+
+.branch:nth-child(2) {
+  border-width:6px;
+  height:300px;
+}
+
+.branch:nth-child(3) {
+  border-color:#070;
+  border-width:12px;
+  height:400px;
+}
+
+.branch:nth-child(4) {
+  animation:sway 5s infinite linear alternate-reverse;
+  border-left:none;
+  border-right:solid 12px #070;
+  border-top-right-radius:100%;
+  height:350px;
+  left:auto;
+  right:74%;
+}
+
+.branch:nth-child(5) {
+  animation:sway 5s infinite linear alternate-reverse;
+  border-left:none;
+  border-right:solid 9px #060;
+  border-top-right-radius:100%;
+  height:250px;
+  left:auto;
+  right:75%;
+}
+
+.branch:nth-child(6) {
+  animation:sway 5s infinite linear alternate-reverse;
+  border-left:none;
+  border-right:solid 6px #050;
+  border-top-right-radius:100%;
+  height:150px;
+  left:auto;
+  right:75%;
+}
+
+@keyframes sway {
+  0% {
+    width:50px;
+  }
+  100% {
+    width:350px;
+  }
+}
+
+
+
+
+
+
+.greenify-text {
+	font-family: 'Coiny', cursive;
+	-webkit-background-clip: text;
+  	-webkit-text-fill-color: transparent;
+	background-image: url(https://images.unsplash.com/photo-1454721738233-1bda0441023a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60);
+	background-size: auto;
+	background-attachment: unset;
+	background-position: 0%;
+	width: 80%;
+	margin: 10%;
+	font-size: 107px;
+	animation: greenify-moving infinite 220s;
+	animation-fill-mode: forwards;
+	animation-play-state: running;
+	animation-timing-function: linear;
+	text-align: center;
+}
+@keyframes greenify-moving {
+	0% {
+		background-position: 0%;
+	}
+	50% {
+		background-position: 100%;
+	}
+	100% {
+		background-position: 0%;
+	}
+}
+.attribute {
+	position: relative;
+	font-size: 26px;
+	text-align: center;
+}
+>>>>>>> 42c0676dd0adfb28b6b97634ef6276cdf49270cb

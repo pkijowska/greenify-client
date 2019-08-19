@@ -6,6 +6,7 @@ import serverURL from "../ServerURL";
 
 const SERVER_URL = serverURL('plants.json');
 
+
 class PlantContainer extends Component {
   constructor() {
       super();
@@ -16,6 +17,8 @@ class PlantContainer extends Component {
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleInputSearch = this._handleInputSearch.bind(this);
+
+
 
 
     const fetchPlants =() => {
@@ -73,7 +76,7 @@ class Gallery extends Component {
              <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
              </Link>
            </p>;
-           console.log(this.props.query);
+           console.log(plantpara);
            const query = this.props.query.toLowerCase();
            const name = plant.name.toLowerCase();
 
