@@ -30,7 +30,7 @@ class Header extends Component {
   render() {
     return (
       <div className="nav">
-        <h1 onMouseOver={ this._handleHover } onMouseOut={ this._handleOut } >greenify<img src={ this.state.image } className="logo" /></h1>
+        <Link to={ '/' } className="headerTitle"><h1 onMouseOver={ this._handleHover } onMouseOut={ this._handleOut } >greenify<img src={ this.state.image } className="logo" /></h1></Link>
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/plants">Plants</Link>

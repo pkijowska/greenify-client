@@ -117,10 +117,17 @@ textarea {
 
 .nav h1 {
   display: inline-block;
+  cursor: pointer;
 }
 
 .nav h1:hover {
   color: var(--main-green-med);
+  cursor: pointer;
+}
+
+a.headerTitle {
+  padding: 0;
+  cursor: pointer;
 }
 
 .featureImage {
