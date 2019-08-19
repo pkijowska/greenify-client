@@ -50,7 +50,7 @@ class CreatePlant extends Component {
             console.log(formData)
             console.log(this.state.file);
              const plantImage = PLANT_IMAGE_API + result.data.id + '.json';
-             axios({method: 'put', url: plantImage, headers: {'Authorization': token}, body: formData })
+             axios({method: 'put', url: plantImage, headers: {'Authorization': token}, data: formData })
                .then(res => {
                  this.props.history.push('/plants');
                });
