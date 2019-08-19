@@ -44,7 +44,7 @@ class Header extends Component {
               <span><Link to="/SignIn">Sign In</Link> or
               <Link to="/SignUp"> Sign Up</Link></span>
           }
-          <h1 class="greenify-text">Greenify</h1>
+
         </div>
       </div>)
   }

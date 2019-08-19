@@ -6,6 +6,7 @@ import feature from '../images/plant_feature.png';
 function Home() {
   return (
     <div>
+        <h1 class="greenify-text">Greenify</h1>
         <img src={ feature } className="featureImage" />
     </div>
   );
