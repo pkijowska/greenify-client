@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
+import serverURL from "../ServerURL";
 
-const SERVER_URL = 'http://localhost:3000/plants.json'
+const SERVER_URL = serverURL('plants.json');
 
 class PlantContainer extends Component {
   constructor() {

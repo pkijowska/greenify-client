@@ -17,9 +17,12 @@ class Header extends Component {
       <div>
         <h1>greenify</h1>
         <Link to="/">Home</Link> |
-        <Link to="/allplantstest">All Plants Test</Link> |
+        <Link to="/plants">Plants</Link> |
+        <Link to="/plants/new">Add Plant</Link> |
+        <Link to="/users">Users</Link> |
 
         { localStorage.getItem("jwt") ?
+
             <Link to="/SignOut">Sign Out</Link>
             :
             <span><Link to="/SignIn">Sign In</Link> or

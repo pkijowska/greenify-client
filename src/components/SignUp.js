@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import serverURL from "../ServerURL";
 
 
 class SignUp extends Component {
@@ -27,15 +28,35 @@ class SignUp extends Component {
   _handleSumbit (event) {
     event.preventDefault();
     // AJAX post request to create user.
-    const url = "http://localhost:3001/api/users";
+    const url = serverURL("/api/users");
     axios.post(url, {
+      user: {
         name: this.state.name,
         email: this.state.email,
         password: this.state.password,
         password_confirmation: this.state.confirm_password,
         is_seller: this.state.seller
+      }
     }).then((results) => {
       console.log(results);
+      // TODO: After they sign up, logthem in and redirect to home.
+
+        // AJAX post request to create user.
+        const loginURL = serverURL("api/user_token");
+        axios.post(loginURL, {
+          auth: {
+            email: this.state.email,
+            password: this.state.password,
+          }
+        })
+        .then((results) => {
+          console.log(results.data);
+          console.log(window)
+          localStorage.setItem("jwt", results.data.jwt);
+          this.props.history.push("/");
+          window.location.reload();
+        })
+        .catch(error => console.log('error', error));
     });
   }
 
@@ -74,7 +95,6 @@ class SignUp extends Component {
     return (
       <div>
         <form onSubmit={ this._handleSumbit } >
-        <p style={{color: "red"}}>Note: This does not work yet, as there is an issue with password_digest. But if I remove that, then sign in and sign out break. Going to ask Joel on Monday</p>
           <label htmlFor="name">
             Name:
             <input type="text" id="name" onChange={ this._handleInputName } />
