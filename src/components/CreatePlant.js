@@ -4,7 +4,7 @@ import axios from 'axios';
 import PlantForm from './PlantForm';
 import serverURL from "../ServerURL";
 
-const PLANT_API = serverURL('plants.json');
+const PLANT_API = serverURL('plants');
 const PLANT_IMAGE_API = serverURL('plants/');
 
 class CreatePlant extends Component {
@@ -20,7 +20,7 @@ class CreatePlant extends Component {
 
 
   handleChange(event) {
-      this.setState({ [event.target.name]: event.target.value});
+    this.setState({ [event.target.name]: event.target.value});
   }
 
   handleFileChange(event) {
@@ -28,31 +28,31 @@ class CreatePlant extends Component {
   }
 
   handleSubmit(event) {
+      event.preventDefault();
+      // Cloudinary
+      // Create file when you upload, then append it to a FormData here.
+      const images = new FormData();
+      if(this.state.file){
+        images.append('file', this.state.file);
+      }
 
-      const { name,image, age, status, cost, worth, description } = this.state;
-      const plant = { name, image, age, status, cost, worth, description }
+      const { name, age, status, cost, worth, description } = this.state;
+      const plant = {name, age, status, cost, worth, description, images};
 
       console.log(plant);
 
-      axios.post(PLANT_API, plant)
+      // const url = serverURL("plants");
+      // // to get the token and send it through the header, you need to add "bearer" with a space after it at the beginning.
+      const token = "Bearer " + localStorage.getItem("jwt");
+      //axios({method: 'get', url: url, headers: {'Authorization': token }})
+      axios({method: 'post', url: PLANT_API, headers: {'Authorization': token}, data: { plant }})
         .then(result => {
-
-          const file = new FormData();
-          if(this.state.file){
-            file.append('file', this.state.file);
-          }
-
-          axios.put(PLANT_IMAGE_API + result.data.id + '.json', file)
-            .then(res => {
-              this.props.history.push('/plants');
-            })
+          this.props.history.push("/plants");
 
         })
         .catch(error => {
           console.log(error);
         });
-
-      event.preventDefault();
   }
 
   render() {

@@ -8,40 +8,37 @@ const SERVER_URL = serverURL('plants.json');
 
 class PlantContainer extends Component {
   constructor() {
-    super();
-    this.state={
-      plants : [],
-      query : ""
+      super();
+      this.state={
+        plants : [],
+        query : ""
+      };
+
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleInputSearch = this._handleInputSearch.bind(this);
+
+
+    const fetchPlants =() => {
+      axios.get(SERVER_URL).then((result) => {
+        this.setState({plants: result.data});
+        console.log(this.state.plants);
+        setTimeout(fetchPlants, 40000);
+      });
     };
-
-  this._handleSubmit = this._handleSubmit.bind(this);
-  this._handleInputSearch = this._handleInputSearch.bind(this);
-
-
-const fetchPlants =() => {
-  axios.get(SERVER_URL).then((result) => {
-    this.setState({plants: result.data});
-  console.log(this.state.plants);
-    setTimeout(fetchPlants, 40000);
-            });
-          };
-          fetchPlants();
-          }
+    fetchPlants();
+  }
 
     _handleSubmit (event) {
       event.preventDefault();
       this.setState({query: '' })
       console.log("click");
-          }
+    }
 
-
-   _handleInputSearch (event) {
-    this.setState({
-    query: event.target.value,})
-    console.log(event.target.value);
-          }
-
-
+    _handleInputSearch (event) {
+      this.setState({
+      query: event.target.value,})
+      console.log(event.target.value);
+    }
 
   render(){
     return(
@@ -83,16 +80,13 @@ class Gallery extends Component {
              <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" />
              </Link>
            </p>;
-console.log(this.props.query);
-const query = this.props.query.toLowerCase();
-const name = plant.name.toLowerCase();
+           console.log(this.props.query);
+           const query = this.props.query.toLowerCase();
+           const name = plant.name.toLowerCase();
 
-if (name.indexOf(query) !== -1){
-  return plantpara;
-}
-
-
-
+            if (name.indexOf(query) !== -1){
+              return plantpara;
+            }
        })
             }
     </div>
