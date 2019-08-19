@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
+import serverURL from "../ServerURL";
 
 
 class SignIn extends Component {
@@ -23,7 +24,7 @@ class SignIn extends Component {
   _handleSumbit (event) {
     event.preventDefault();
     // AJAX post request to create user.
-    const url = "http://localhost:3001/api/user_token";
+    const url = serverURL("api/user_token");
     axios.post(url, {
       auth: {
         email: this.state.email,
@@ -32,7 +33,10 @@ class SignIn extends Component {
     })
     .then((results) => {
       console.log(results.data);
+      console.log(window)
       localStorage.setItem("jwt", results.data.jwt);
+      this.props.history.push("/");
+      window.location.reload();
     })
     .catch(error => console.log('error', error));;
   }

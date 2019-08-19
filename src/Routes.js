@@ -7,11 +7,11 @@ import Footer from './components/Footer';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import SignOut from './components/SignOut';
-import AllPlantsTest from './components/AllPlantsTest';
-import PlantsTest from './components/PlantsTest';
 import PlantContainer from './components/PlantContainer';
 import CreatePlant from './components/CreatePlant';
 import EditPlant from './components/EditPlant';
+import UserProfile from './components/UserProfile';
+import Users from './components/Users';
 
 import PlantInfo from './components/PlantInfo';
 
@@ -27,11 +27,10 @@ const Routes = (
         <Route exact path="/plants/new" component= { CreatePlant } />
         <Route exact path="/plants/:id" component={ PlantInfo } />
         <Route exact path="/plants/:id/edit" component= { EditPlant } />
+        <Route exact path="/users/:id" component= { UserProfile } />
+        <Route exact path="/users" component= { Users } />
 
-
-        <Route exact path="/allplantstest" component= { AllPlantsTest } />
         <Route exact path="/SignUp" component= { SignUp } />
-        <Route path="/plants/:id" component= { PlantsTest } />
         { localStorage.getItem("jwt") ?
             <Route exact path="/SignOut" component= { SignOut } />
             :

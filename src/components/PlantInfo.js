@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Image } from 'cloudinary-react';
 import { Link } from 'react-router-dom';
+import serverURL from "../ServerURL";
 
-
-const SERVER_URL = 'http://localhost:3000/plants/7.json'
+const SERVER_URL = serverURL('plants/7.json');
 
 
 
@@ -16,7 +16,7 @@ constructor(props){
   }
 
   const plant_id = this.props.match.params.id;
-  const URL = "http://localhost:3000/plants/" + plant_id + ".json";
+  const URL = serverURL("plants/" + plant_id + ".json");
 
 
   const fetchPlantInfo =() => {

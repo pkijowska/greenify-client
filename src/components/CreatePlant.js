@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import PlantForm from './PlantForm';
+import serverURL from "../ServerURL";
 
-
-const PLANT_API = 'http://localhost:3000/plants.json';
-const PLANT_IMAGE_API = 'http://localhost:3000/plants/';
+const PLANT_API = serverURL('plants.json');
+const PLANT_IMAGE_API = serverURL('plants/');
 
 class CreatePlant extends Component {
   constructor(){
