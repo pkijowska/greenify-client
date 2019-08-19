@@ -31,13 +31,13 @@ class CreatePlant extends Component {
       event.preventDefault();
       // Cloudinary
       // Create file when you upload, then append it to a FormData here.
-      const file = new FormData();
+      const images = new FormData();
       if(this.state.file){
-        file.append('file', this.state.file);
+        images.append('file', this.state.file);
       }
 
-      const { name,image, age, status, cost, worth, description } = this.state;
-      const plant = {name, image, age, status, cost, worth, description, file};
+      const { name, age, status, cost, worth, description } = this.state;
+      const plant = {name, age, status, cost, worth, description, images};
 
       console.log(plant);
 
