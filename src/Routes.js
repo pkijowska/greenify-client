@@ -12,7 +12,7 @@ import CreatePlant from './components/CreatePlant';
 import EditPlant from './components/EditPlant';
 import UserProfile from './components/UserProfile';
 import Users from './components/Users';
-
+import Bookings from './components/Bookings';
 import PlantInfo from './components/PlantInfo';
 
 
@@ -29,7 +29,7 @@ const Routes = (
         <Route exact path="/plants/:id/edit" component= { EditPlant } />
         <Route exact path="/users/:id" component= { UserProfile } />
         <Route exact path="/users" component= { Users } />
-
+        <Route exact path="/bookings" component= { Bookings } />
         <Route exact path="/SignUp" component= { SignUp } />
         { localStorage.getItem("jwt") ?
             <Route exact path="/SignOut" component= { SignOut } />
