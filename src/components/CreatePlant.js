@@ -29,15 +29,10 @@ class CreatePlant extends Component {
 
   handleSubmit(event) {
       event.preventDefault();
-      // Cloudinary
-      // Create file when you upload, then append it to a FormData here.
-      const images = new FormData();
-      if(this.state.file){
-        images.append('file', this.state.file);
-      }
+
 
       const { name, age, status, cost, worth, description } = this.state;
-      const plant = {name, age, status, cost, worth, description, images};
+      const plant = {name, age, status, cost, worth, description};
 
       console.log(plant);
 
@@ -47,7 +42,17 @@ class CreatePlant extends Component {
       //axios({method: 'get', url: url, headers: {'Authorization': token }})
       axios({method: 'post', url: PLANT_API, headers: {'Authorization': token}, data: { plant }})
         .then(result => {
-          this.props.history.push("/plants");
+          alert('Saved successfully');
+          const file = new FormData();
+          file.append('file', this.state.file);
+            console.log(file);
+             const plantImage = PLANT_IMAGE_API + result.data.id + '.json';
+             axios({method: 'put', url: plantImage, headers: {'Authorization': token}, body: file })
+               .then(res => {
+                 this.props.history.push('/plants');
+               });
+
+          //this.props.history.push("/plants");
 
         })
         .catch(error => {
