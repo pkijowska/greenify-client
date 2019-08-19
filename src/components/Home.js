@@ -3,12 +3,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import feature from '../images/plant_feature.png';
 
-function App() {
+function Home() {
   return (
     <div>
+        <h1 class="greenify-text">Greenify</h1>
         <img src={ feature } className="featureImage" />
     </div>
   );
 }
 
-export default App;
+export default Home;

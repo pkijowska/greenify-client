@@ -45,10 +45,12 @@ class CreatePlant extends Component {
 
       axios({method: 'post', url: PLANT_API, headers: {'Authorization': token}, data: { plant }})
         .then(result => {
-          const file = new FormData();
-          file.append('file', this.state.file);
+          const formData = new FormData();
+          formData.append('file', this.state.file);
+            console.log(formData)
+            console.log(this.state.file);
              const plantImage = PLANT_IMAGE_API + result.data.id + '.json';
-             axios({method: 'put', url: plantImage, data: file, headers: {'Authorization': token} })
+             axios({method: 'put', url: plantImage, headers: {'Authorization': token}, body: formData })
                .then(res => {
                  this.props.history.push('/plants');
                });
@@ -63,7 +65,7 @@ class CreatePlant extends Component {
 
   render() {
     return (
-      <div>
+      <div className="centerForm">
         <h2> Create New Plant </h2>
         <PlantForm
           heading = "Create New Plant"

@@ -93,7 +93,7 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div>
+      <div className="centerForm">
         <form onSubmit={ this._handleSumbit } >
           <label htmlFor="name">
             Name:

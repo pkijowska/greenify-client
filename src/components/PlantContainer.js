@@ -6,6 +6,7 @@ import serverURL from "../ServerURL";
 
 const SERVER_URL = serverURL('plants.json');
 
+
 class PlantContainer extends Component {
   constructor() {
       super();
@@ -16,6 +17,8 @@ class PlantContainer extends Component {
 
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleInputSearch = this._handleInputSearch.bind(this);
+
+
 
 
     const fetchPlants =() => {
@@ -42,11 +45,7 @@ class PlantContainer extends Component {
 
   render(){
     return(
-      <div>
-        <button><Link to="/">Go back!</Link></button>
-
-
-
+      <div className="centerForm">
         <h2>This is a plant area. See our plants:</h2>
         <form onSubmit={this._handleSubmit}>
 
@@ -68,19 +67,16 @@ class PlantContainer extends Component {
 class Gallery extends Component {
   render() {
     return(
-
-      <div>
-
-
+      <div className="allPlantsGrid">
         {this.props.plants.map((plant) => {
 
           const plantpara = <p key={plant.id}>
              {plant.name}
              <Link to={ "/plants/" + plant.id }>
-             <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" />
+             <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
              </Link>
            </p>;
-           console.log(this.props.query);
+           console.log(plantpara);
            const query = this.props.query.toLowerCase();
            const name = plant.name.toLowerCase();
 
@@ -88,7 +84,7 @@ class Gallery extends Component {
               return plantpara;
             }
        })
-            }
+      }
     </div>
     )
   }
