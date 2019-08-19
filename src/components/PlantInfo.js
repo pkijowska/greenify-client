@@ -21,8 +21,8 @@ constructor(props){
   const plant_id = this.props.match.params.id;
   const URL = serverURL("plants/" + plant_id + ".json");
 
-const  AVAIL =  serverURL('plants/'+ plant_id +'/availabilities');
-console.log(AVAIL);
+  const  AVAIL =  serverURL('plants/'+ plant_id +'/availabilities');
+  console.log(AVAIL);
 
   const fetchPlantInfo =() => {
     axios.get(URL).then((result) => {
@@ -47,30 +47,20 @@ console.log(AVAIL);
 
 render(){
   var listDate = [];
-  var startDate =this.state.availability.map((p) => {
-        const dateFrom = <p key={p.id}>
-        {p.from}</p>
+  var startDate = this.state.availability.map((p) => {
+        // generate a Date for from and to values.
+        const dateFrom = new Date(p.from);
+        const dateTo = new Date(p.to);
 
-          return dateFrom;
-      })
-      ;
-  var endDate = this.state.availability.map((p) => {
-  const  dateTo  =  <p key={p.id}>
-      {p.to}</p>
-      return dateTo;
-    })
-;
-  var dateMove = new Date(startDate);
-  var strDate = startDate;
+        // .getDate() returns the day of the month, if it is the 6th of August, it will return 6.
+        // .setDate() sets the date, so by running this instead of d++, we are incrementing the date every loop.
 
-  while (strDate < endDate){
-    var strDate = dateMove.toISOString().slice(0,10);
-    listDate.push(strDate);
-    dateMove.setDate(dateMove.getDate()+1);
-  };
-  console.log(listDate);
-
-
+        // Loop through dates from the start date until the end date, each loop increment the date by 1.
+        // inside loop, push the day into the array.
+        for (var d = dateFrom; d <= dateTo; d.setDate(d.getDate() + 1)) {
+            listDate.push(new Date(d));
+        }
+      });
 
   return(
     <div className="centerForm">
@@ -83,7 +73,9 @@ render(){
     <p>{this.state.plantInfo.worth} </p>
     <p>{this.state.plantInfo.description}</p>
 
-      {listDate}
+    { listDate.map((dates) => {
+      return <span><span>{ dates.toString() } - </span><Link to={ '/' }>Book</Link><br /></span>
+    })}
 
 
     </div>
