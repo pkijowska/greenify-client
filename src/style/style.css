@@ -120,9 +120,21 @@ textarea {
   cursor: pointer;
 }
 
+.nav h1 .hover {
+  display: none;
+}
+
 .nav h1:hover {
   color: var(--main-green-med);
   cursor: pointer;
+}
+
+.nav h1:hover .nohover {
+  display: none;
+}
+
+.nav h1:hover .hover {
+  display: inline-block;
 }
 
 a.headerTitle {
