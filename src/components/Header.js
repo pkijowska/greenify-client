@@ -15,10 +15,11 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <h1>greenify</h1>
+
         <Link to="/">Home</Link> |
         <Link to="/plants">Plants</Link> |
         <Link to="/plants/new">Add Plant</Link> |
+        <Link to="/bookings">Booking</Link> |
         <Link to="/users">Users</Link> |
 
         { localStorage.getItem("jwt") ?
@@ -28,6 +29,7 @@ class Header extends Component {
             <span><Link to="/SignIn">Sign In</Link> or
             <Link to="/SignUp"> Sign Up</Link></span>
         }
+        <h1 class="greenify-text">Greenify</h1>
       </div>)
   }
 }
