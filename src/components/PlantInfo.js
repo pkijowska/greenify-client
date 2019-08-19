@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 const SERVER_URL = 'http://localhost:3000/plants/7.json'
 
 
-
 class PlantInfo extends Component {
 constructor(props){
   super(props);
@@ -31,6 +30,7 @@ constructor(props){
 
 
 
+
 render(){
   return(
     <div>
@@ -42,6 +42,8 @@ render(){
     <p>{this.state.plantInfo.cost} </p>
     <p>{this.state.plantInfo.worth} </p>
     <p>{this.state.plantInfo.description}</p>
+
+   <Link to="/SignIn">  <button> Book it now!</button> </Link>
 
     </div>
   )
