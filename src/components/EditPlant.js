@@ -87,7 +87,7 @@ constructor(props) {
     render() {
 
       return (
-        <div>
+        <div className="centerForm">
           <h2> Edit form </h2>
           <Image cloudName="dto4pzoz6" publicId={this.state.plant.images} width="300" />
 
