@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lexend+Deca|Livvic&display=swap');
-
+@import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
 /* default colour theme */
 html {
   --main-neutral-very-light: #f8f6f5;
@@ -310,4 +310,23 @@ input[type="checkbox"] {
   max-width: 50px;
   max-height: 50px;
   display: block;
+}
+
+.title {
+    font-family: 'Satisfy', cursive;
+    font-size: 50px;
+    color: #77b300;
+    margin-bottom: 20px;
+
+}
+
+.question {
+  color: #806000;
+  margin-bottom: 10px;
+}
+
+.answerBtn{
+  background-color: #e6ccb3;
+  margin-left: 20px;
+  margin-bottom: 20px;
 }
