@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "../style/plant_art.css";
 
 // Created this class to test authentication.
 // Only shows all plants if you have logged in, otherwise you are not allowed.

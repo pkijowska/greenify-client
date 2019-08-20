@@ -3,11 +3,12 @@ import axios from 'axios';
 import { Image } from 'cloudinary-react';
 import { Link } from 'react-router-dom';
 import serverURL from "../ServerURL";
+// use moment.js to deal with formatting dates.
+import moment from "moment";
+// Datepicker allows you to pick dates from a dropdown calendar.
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
-
-
-const SERVER_URL = serverURL('plants/7.json');
-// const AVA_URL = serverURL('availabilities.json');
 
 
 class PlantInfo extends Component {
@@ -15,14 +16,22 @@ constructor(props){
   super(props);
   this.state= {
     plantInfo : [],
-    availability : []
+    availability : [],
+    bookings: [],
+    startDate: new Date(),
+    endDate: new Date(),
   }
+
+  // Handles the change of the start and end date teh user picks
+  this.handleChangeStart = this.handleChangeStart.bind(this);
+  this.handleChangeEnd = this.handleChangeEnd.bind(this);
+  this._handleSubmit = this._handleSubmit.bind(this);
 
   const plant_id = this.props.match.params.id;
   const URL = serverURL("plants/" + plant_id + ".json");
 
   const  AVAIL =  serverURL('plants/'+ plant_id +'/availabilities');
-  console.log(AVAIL);
+  const  BOOKINGS =  serverURL('plants/'+ plant_id +'/bookings');
 
   const fetchPlantInfo =() => {
     axios.get(URL).then((result) => {
@@ -42,12 +51,51 @@ constructor(props){
     });
     };
   fetchAva();
+
+  const fetchBookings =() => {
+    axios.get(BOOKINGS).then((result) => {
+    this.setState({ bookings: result.data});
+    });
+    };
+  fetchBookings();
 }
+
+  // Handles the change of the start date teh user picks
+  handleChangeStart(date) {
+      this.setState({
+        startDate: date
+      });
+    }
+
+  // Handles the change of the end date teh user picks
+  handleChangeEnd(date) {
+      this.setState({
+        endDate: date
+      });
+    }
+
+  _handleSubmit (event) {
+    event.preventDefault();
+    let from = this.state.startDate
+    let to = this.state.endDate
+    console.log("from " + from);
+    console.log("to " + to);
+    const token = "Bearer " + localStorage.getItem("jwt");
+    axios({method: 'post', url: serverURL(`plants/${ this.props.match.params.id }/bookings`), headers: {'Authorization': token}, data: {
+      booking: {
+        from: from,
+        to: to
+      }
+    }}).then(() => window.location.reload());
+  }
 
 
 render(){
-  var listDate = [];
-  var startDate = this.state.availability.map((p) => {
+
+  let listDate = [];
+  let startAvailableDate = "";
+  let endAvailableDate = "";
+  let startDate = this.state.availability.map((p) => {
         // generate a Date for from and to values.
         const dateFrom = new Date(p.from);
         const dateTo = new Date(p.to);
@@ -62,22 +110,84 @@ render(){
         }
       });
 
+
+
+      // use this array to populate with all the dates that have already been booked
+      // to do this, filter through all the bookings, then add each date to this list.
+      let bookedDates = [ ];
+      this.state.bookings.map((b) => {
+        // generate a Date for from and to values.
+        const dateFrom = new Date(b.from);
+        const dateTo = new Date(b.to);
+
+        for (let b = dateFrom; b <= dateTo; b.setDate(b.getDate() + 1)) {
+            bookedDates.push(new Date(b));
+        }
+      })
+
+      // TODO: filter through dates to make an availableDates list, and apply a style to that.
+      const highlighted = [{ "bookedDates": bookedDates }];
+
+
+
   return(
-    <div className="centerForm">
-    <h1> Plant {this.props.match.params.id}</h1>
-    <div><Link to={"/plants/"+ this.props.match.params.id +"/edit"}>Edit Plant</Link></div>
-    <p>{this.state.plantInfo.name}</p>
-    <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images} width="300" />
-    <p>{this.state.plantInfo.age}</p>
-    <p>{this.state.plantInfo.cost} </p>
-    <p>{this.state.plantInfo.worth} </p>
-    <p>{this.state.plantInfo.description}</p>
+    <div>
+      <h1 className="plantProfileTitle">{this.state.plantInfo.name}</h1>
+      <div className="plantProfileGrid">
+        <div className="plantProfileImage">
+          <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images} width="300" />
+        </div>
+        <div className="plantProfileStats">
+          <p><span className="plantProfileBold">Age: </span>{this.state.plantInfo.age}</p>
+          <p><span className="plantProfileBold">Cost :</span>{this.state.plantInfo.cost}</p>
+          <p><span className="plantProfileBold">Worth: </span>{this.state.plantInfo.worth}</p>
+          <p><span className="plantProfileBold">Description: </span>{this.state.plantInfo.description}</p>
+        </div>
+        <div className="plantProfileBookingDates">
+        <h3>Book this plant:</h3>
+        <div class="plantProfileBookingGrid">
+          <span>
+            <p>From:</p>
+            <DatePicker
+                todayButton={"Today"}
+                selected={this.state.startDate}
+                selectsStart
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                onChange={this.handleChangeStart}
+                minDate={ listDate[0] }
+                maxDate={ listDate[listDate.length - 1] }
+                highlightDates={ highlighted }
+                excludeDates={ bookedDates }
+                placeholderText="Select a Start Date"
+              />
+            </span>
 
-    { listDate.map((dates) => {
-      return <span><span>{ dates.toString() } - </span><Link to={ '/' }>Book</Link><br /></span>
-    })}
+            <span>
+              <p>To:</p>
+              <DatePicker
+                  todayButton={"Today"}
+                  selected={this.state.endDate}
+                  selectsEnd
+                  startDate={this.state.startDate}
+                  endDate={this.state.endDate}
+                  onChange={this.handleChangeEnd}
+                  minDate={ listDate[0] }
+                  maxDate={ listDate[listDate.length - 1] }
+                  highlightDates={ highlighted }
+                  excludeDates={ bookedDates }
+                  placeholderText="Select an End Date"
+              />
+            </span>
+          </div>
 
+          <form onSubmit={ this._handleSubmit }>
+            <input type="submit" value="Book Now" />
+          </form>
 
+        </div>
+      </div>
+      <div className="plantProfileButtonArea"><Link to={"/plants/"+ this.props.match.params.id +"/edit"}>Edit Plant</Link></div>
     </div>
   )
 }
