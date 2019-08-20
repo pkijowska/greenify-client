@@ -8,9 +8,6 @@ import moment from "moment";
 // Datepicker allows you to pick dates from a dropdown calendar.
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-
-
-
 class PlantInfo extends Component {
 constructor(props){
   super(props);
@@ -24,7 +21,6 @@ constructor(props){
     startDate: new Date(),
     endDate: new Date(),
   }
-
   // Handles the change of the start and end date teh user picks
   this.handleChangeStart = this.handleChangeStart.bind(this);
   this.handleChangeEnd = this.handleChangeEnd.bind(this);
@@ -35,7 +31,6 @@ constructor(props){
 
   const plant_id = this.props.match.params.id;
   const URL = serverURL("plants/" + plant_id + ".json");
-
   const  AVAIL =  serverURL('plants/'+ plant_id +'/availabilities');
   const  BOOKINGS =  serverURL('plants/'+ plant_id +'/bookings');
   const  COMMENTS =  serverURL('plants/'+ plant_id +'/comments');
@@ -48,8 +43,6 @@ constructor(props){
     });
   };
   fetchPlantInfo();
-
-
   const fetchAva =() => {
     axios.get(AVAIL).then((result) => {
     this.setState({availability: result.data});
@@ -58,7 +51,6 @@ constructor(props){
     });
     };
   fetchAva();
-
   const fetchBookings =() => {
     axios.get(BOOKINGS).then((result) => {
     this.setState({ bookings: result.data});
@@ -74,21 +66,18 @@ constructor(props){
     };
   fetchComments();
 }
-
   // Handles the change of the start date teh user picks
   handleChangeStart(date) {
       this.setState({
         startDate: date
       });
     }
-
   // Handles the change of the end date teh user picks
   handleChangeEnd(date) {
       this.setState({
         endDate: date
       });
     }
-
   _handleSubmit (event) {
     event.preventDefault();
     let from = this.state.startDate
@@ -127,7 +116,6 @@ constructor(props){
 
 
 render(){
-
   let listDate = [];
   let startAvailableDate = "";
   let endAvailableDate = "";
@@ -135,19 +123,14 @@ render(){
         // generate a Date for from and to values.
         const dateFrom = new Date(p.from);
         const dateTo = new Date(p.to);
-
         // .getDate() returns the day of the month, if it is the 6th of August, it will return 6.
         // .setDate() sets the date, so by running this instead of d++, we are incrementing the date every loop.
-
         // Loop through dates from the start date until the end date, each loop increment the date by 1.
         // inside loop, push the day into the array.
         for (var d = dateFrom; d <= dateTo; d.setDate(d.getDate() + 1)) {
             listDate.push(new Date(d));
         }
       });
-
-
-
       // use this array to populate with all the dates that have already been booked
       // to do this, filter through all the bookings, then add each date to this list.
       let bookedDates = [ ];
@@ -155,17 +138,12 @@ render(){
         // generate a Date for from and to values.
         const dateFrom = new Date(b.from);
         const dateTo = new Date(b.to);
-
         for (let b = dateFrom; b <= dateTo; b.setDate(b.getDate() + 1)) {
             bookedDates.push(new Date(b));
         }
       })
-
       // TODO: filter through dates to make an availableDates list, and apply a style to that.
       const highlighted = [{ "bookedDates": bookedDates }];
-
-
-
   return(
     <div>
       <h1 className="plantProfileTitle">{this.state.plantInfo.name}</h1>
@@ -198,7 +176,6 @@ render(){
                 placeholderText="Select a Start Date"
               />
             </span>
-
             <span>
               <p>To:</p>
               <DatePicker
@@ -216,11 +193,9 @@ render(){
               />
             </span>
           </div>
-
           <form onSubmit={ this._handleSubmit }>
             <input type="submit" value="Book Now" />
           </form>
-
         </div>
       </div>
       <div className="commentSection">
@@ -247,6 +222,4 @@ render(){
   )
 }
 }
-
-
 export default PlantInfo;
