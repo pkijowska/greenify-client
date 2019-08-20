@@ -15,6 +15,9 @@ constructor(props){
     plantInfo : [],
     availability : [],
     bookings: [],
+    comments: [],
+    comment: "",
+    rating: "",
     startDate: new Date(),
     endDate: new Date(),
   }
@@ -22,10 +25,16 @@ constructor(props){
   this.handleChangeStart = this.handleChangeStart.bind(this);
   this.handleChangeEnd = this.handleChangeEnd.bind(this);
   this._handleSubmit = this._handleSubmit.bind(this);
+  this._handleSubmitComment = this._handleSubmitComment.bind(this);
+  this._handleChangeRating = this._handleChangeRating.bind(this);
+  this._handleChangeComment = this._handleChangeComment.bind(this);
+
   const plant_id = this.props.match.params.id;
   const URL = serverURL("plants/" + plant_id + ".json");
   const  AVAIL =  serverURL('plants/'+ plant_id +'/availabilities');
   const  BOOKINGS =  serverURL('plants/'+ plant_id +'/bookings');
+  const  COMMENTS =  serverURL('plants/'+ plant_id +'/comments');
+
   const fetchPlantInfo =() => {
     axios.get(URL).then((result) => {
       this.setState({plantInfo: result.data});
@@ -48,6 +57,14 @@ constructor(props){
     });
     };
   fetchBookings();
+
+  const fetchComments =() => {
+    axios.get(COMMENTS).then((result) => {
+    this.setState({ comments: result.data});
+    });
+    setTimeout(fetchComments, 4000);
+    };
+  fetchComments();
 }
   // Handles the change of the start date teh user picks
   handleChangeStart(date) {
@@ -75,6 +92,29 @@ constructor(props){
       }
     }}).then(() => window.location.reload());
   }
+
+  _handleSubmitComment (event) {
+    event.preventDefault();
+
+    const token = "Bearer " + localStorage.getItem("jwt");
+    axios({method: 'post', url: serverURL(`plants/${ this.props.match.params.id }/comments`), headers: {'Authorization': token}, data: {
+      comment: {
+        comment: this.state.comment,
+        rating: this.state.rating,
+      }
+
+    }}).then(() => window.location.reload());
+  }
+
+  _handleChangeComment (event) {
+    this.setState({comment: event.target.value});
+  }
+
+  _handleChangeRating (event) {
+    this.setState({rating: event.target.value});
+  }
+
+
 render(){
   let listDate = [];
   let startAvailableDate = "";
@@ -157,6 +197,25 @@ render(){
             <input type="submit" value="Book Now" />
           </form>
         </div>
+      </div>
+      <div className="commentSection">
+      <h3>Comments</h3>
+        {this.state.comments.map((c) => {
+          return <div className="comment">
+          <p><b>{ c.rating } / 5</b> <span className="commentTime">{ moment(c.updated_at).format("LLL") }</span></p>
+          <p>{ c.comment }</p>
+
+          </div>
+        })}
+
+        <h3>Make a comment</h3>
+        <form onSubmit={ this._handleSubmitComment }>
+        Rating:
+          <input type="number" onChange={ this._handleChangeRating } />
+        Comment:
+          <input type="textarea" onChange={ this._handleChangeComment } />
+          <input type="submit" value="sumbit" />
+        </form>
       </div>
       <div className="plantProfileButtonArea"><Link to={"/plants/"+ this.props.match.params.id +"/edit"}>Edit Plant</Link></div>
     </div>

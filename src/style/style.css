@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css?family=Satisfy&display=swap');
 /* default colour theme */
 html {
-  --main-neutral-very-light: #f8f6f5;
+  --main-neutral-very-light: white;
 	--main-neutral-light: #faf9f2;
-  --main-neutral-med-light: #f7f6ef;
+  --main-neutral-med-light: #f5f1e7;
   --main-neutral-med: #73736e;
 	--main-neutral-dark: #393939;
   --main-neutral-vary_dark: #1d1c1c;
@@ -262,6 +262,23 @@ a.headerTitle {
   border-radius: 4px;
 }
 
+
+.comment {
+  width: 100%;
+  display: block;
+  background-color: var(--main-neutral-very-light);
+  border-radius: 5px;
+  border: 2px solid var(--main-neutral-med-light);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.commentTime {
+  font-style: italic;
+  color: var(--main-neutral-med);
+  font-size: 0.8em;
+  vertical-align: baseline;
+}
 
 /* All Forms ******************************************************************/
 
