@@ -68,10 +68,10 @@ render(){
     <div><Link to={"/plants/"+ this.props.match.params.id +"/edit"}>Edit Plant</Link></div>
     <p>{this.state.plantInfo.name}</p>
     <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images} width="300" />
-    <p>{this.state.plantInfo.age}</p>
-    <p>{this.state.plantInfo.cost} </p>
-    <p>{this.state.plantInfo.worth} </p>
-    <p>{this.state.plantInfo.description}</p>
+    <p>Age: {this.state.plantInfo.age}</p>
+    <p>Cost: {this.state.plantInfo.cost} </p>
+    <p>Worth: {this.state.plantInfo.worth} </p>
+    <p>Description: {this.state.plantInfo.description}</p>
 
     { listDate.map((dates) => {
       return <span><span>{ dates.toString() } - </span><Link to={ '/' }>Book</Link><br /></span>
