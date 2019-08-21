@@ -1,4 +1,4 @@
-export default [
+var quizQuestions = [
 {
   question: "Do you prefer a cosy night in or an adventourous night out?",
   answers: ["A cosy night in", "Adventourous night out"],
@@ -29,4 +29,6 @@ export default [
   correct: 1
 }
 
-]
+];
+
+export default quizQuestions;
