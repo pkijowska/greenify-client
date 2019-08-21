@@ -14,6 +14,8 @@ class CreatePlant extends Component {
     }
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleDateFromChange = this.handleDateFromChange.bind(this);
+    this.handleDateToChange = this.handleDateToChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this);
   }
@@ -21,6 +23,15 @@ class CreatePlant extends Component {
 
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value});
+  }
+
+  handleDateFromChange(event) {
+    console.log("from");
+    this.setState({ date_from: event});
+  }
+
+  handleDateToChange(event) {
+    this.setState({ date_to: event});
   }
 
   handleFileChange(event) {
@@ -71,6 +82,10 @@ class CreatePlant extends Component {
           heading = "Create New Plant"
           onTextChange={this.handleChange}
           onFileChange={this.handleFileChange}
+          onDateFromChange={this.handleDateFromChange}
+          onDateToChange={this.handleDateToChange}
+          date_from={this.state.date_from}
+          date_to={this.state.date_to}
           onSubmit={this.handleSubmit}
           buttonLabel = "Add Plant"
           plant={{}} />
