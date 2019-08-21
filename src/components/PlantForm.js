@@ -1,7 +1,20 @@
 import React, {Component} from 'react';
+// use moment.js to deal with formatting dates.
+import moment from "moment";
+// Datepicker allows you to pick dates from a dropdown calendar.
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 class PlantForm extends Component {
+  constructor(){
+    super();
+    this.state = {
+      date_from: "",
+      date_to: ""
+    }
+
+  }
 
 
  render() {
@@ -36,6 +49,39 @@ class PlantForm extends Component {
                Desciption:
                  <textarea name="description" value={this.props.plant.description} onChange={this.props.onTextChange}/>
              </label><br/>
+
+             <label>
+              Availability:
+              <div class="plantProfileBookingGrid">
+                <span>
+                  <p>From:</p>
+                  <DatePicker
+                      name= "date_from"
+                      todayButton={"Today"}
+                      selected={this.props.date_from}
+                      selectsStart
+                      startDate={this.props.date_from}
+                      endDate={this.props.date_to}
+                      onChange={this.props.onDateFromChange}
+                      placeholderText="Select a Start Date"
+                    />
+                  </span>
+                  <span>
+                    <p>To:</p>
+                    <DatePicker
+                        name= "date_to"
+                        todayButton={"Today"}
+                        selected={this.props.date_to}
+                        selectsEnd
+                        startDate={this.props.date_from}
+                        endDate={this.props.date_to}
+                        onChange={this.props.onDateToChange}
+                        placeholderText="Select an End Date"
+                    />
+                  </span>
+                </div>
+              </label><br />
+
                <input type="submit" value= {this.props.buttonLabel} />
              </form>
          </div>

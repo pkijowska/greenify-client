@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Rating from './Rating';
 import axios from 'axios';
 import { Image } from 'cloudinary-react';
 import { Link } from 'react-router-dom';
@@ -202,7 +203,7 @@ render(){
       <h3>Comments</h3>
         {this.state.comments.map((c) => {
           return <div className="comment">
-          <p><b>{ c.rating } / 5</b> <span className="commentTime">{ moment(c.updated_at).format("LLL") }</span></p>
+          <p><Rating rating={ c.rating } /> <span className="commentTime">- <Link to={ `/users/${ c.user.id }` }>{ c.user.name }</Link> on { moment(c.updated_at).format("LLL") }</span></p>
           <p>{ c.comment }</p>
 
           </div>
@@ -211,9 +212,16 @@ render(){
         <h3>Make a comment</h3>
         <form onSubmit={ this._handleSubmitComment }>
         Rating:
-          <input type="number" onChange={ this._handleChangeRating } />
+          <select onChange={ this._handleChangeRating } required>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+
         Comment:
-          <input type="textarea" onChange={ this._handleChangeComment } />
+          <input type="textarea" onChange={ this._handleChangeComment } required/>
           <input type="submit" value="sumbit" />
         </form>
       </div>
