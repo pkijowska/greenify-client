@@ -10,11 +10,14 @@ class Quiz extends Component {
     questionBank: [],
     score: 0,
     responses: 0,
-    plantInfo: []
+    
   };
 
 //invokes quizzService API and proceeds to populate the questionBank state variable with the results.
 
+
+
+  break;
 
 
 

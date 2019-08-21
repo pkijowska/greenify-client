@@ -194,6 +194,8 @@ a.headerTitle {
 .allPlantsShow {
   border-radius: 4px;
   display: block;
+  object-fit: cover;
+  max-height: 220px;
 }
 
 /* PLANT PROFILE **************************************************************/
