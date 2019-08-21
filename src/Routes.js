@@ -15,6 +15,8 @@ import UserProfile from './components/UserProfile';
 import Users from './components/Users';
 import Bookings from './components/Bookings';
 import PlantInfo from './components/PlantInfo';
+import Quiz1 from './components/Quiz1';
+
 
 
 // TODO: make Header refresh like the rest of the pages. e.g. when you logout it wont refresh the navbar automatically.
@@ -33,6 +35,7 @@ const Routes = (
           <Route exact path="/users/:id" component= { UserProfile } />
           <Route exact path="/users" component= { Users } />
           <Route exact path="/bookings" component= { Bookings } />
+          <Route exact path="/quiz1" component= { Quiz1 } />
           <Route exact path="/SignUp" component= { SignUp } />
           { localStorage.getItem("jwt") ?
               <Route exact path="/SignOut" component= { SignOut } />
