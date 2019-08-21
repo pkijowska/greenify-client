@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/greenify-client/precache-manifest.ca793dfe1fbd41b8d6b64d411cd53f64.js"
+  "/greenify-client/precache-manifest.cde6fd7474fe20f6fecf18a49c568717.js"
 );
 
 self.addEventListener('message', (event) => {
