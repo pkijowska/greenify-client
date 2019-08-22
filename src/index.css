@@ -16,14 +16,7 @@ code {
 .hidden {
   display: none;
 }
-.quizplant{
-  /* position: absolute;
-    top: 0;
-    /* left: 40%; */
-    /* opacity: 0.5; */
-     /* z-index: -1; */
-    /* max-height: 100%; */ 
-}
+
 .quizEndDiv {
   position: relative;
   min-height: 50vh;

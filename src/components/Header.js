@@ -46,10 +46,11 @@ class Header extends Component {
     }
 
     const token = "Bearer " + localStorage.getItem("jwt");
+    console.log(token);
 
     axios({method: 'get', url: serverURL("/current_user"), headers: {'Authorization': token }})
     .then(response => {
-      this.setState({ user: response.data.name })
+      this.setState({ user: response.data })
     })
     .catch(error => console.log('error', error));
 
@@ -70,16 +71,18 @@ class Header extends Component {
         <div className="links">
           <Link to="/">Home</Link>
           <Link to="/plants">Plants</Link>
-          <Link to="/plants/new">Add Plant</Link>
+          { this.state.user.is_seller ? <Link to="/plants/new">Add Plant</Link> : "" }
           <Link to="/quiz">Quiz</Link>
-          <Link to="/users">Users</Link>
+          { this.state.user.admin ? <Link to="/users">Users</Link> : "" }
           <Link to="/Quiz1">Quiz1</Link>
 
 
           { localStorage.getItem("jwt") ?
               <span>
-              <img className="avatar" src={ profileImg } width="50" height="50" />
-               { this.state.user }
+              <Link to={"/users/" + this.state.user.id} >
+                <img className="avatar" src={ profileImg } width="50" height="50" />
+                { this.state.user.name }
+               </Link>
               <Link to="/SignOut">Sign Out</Link></span>
               :
               <span><Link to="/SignIn">Sign In</Link> or

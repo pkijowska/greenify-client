@@ -13,6 +13,7 @@ class PlantInfo extends Component {
 constructor(props){
   super(props);
   this.state= {
+    user: "",
     plantInfo : [],
     availability : [],
     bookings: [],
@@ -122,8 +123,23 @@ constructor(props){
     if (moment().format("l") == moment(checkdate).format("l")) {
         return newInTown;
       }
-    
+
     }
+    componentDidMount() {
+      if(!localStorage.getItem("jwt")) {
+        return;
+      }
+
+      const token = "Bearer " + localStorage.getItem("jwt");
+
+      axios({method: 'get', url: serverURL("/current_user"), headers: {'Authorization': token }})
+      .then(response => {
+        this.setState({ user: response.data })
+        console.log(this.state.user)
+      })
+      .catch(error => console.log('error', error));
+    }
+
 
 render(){
   let listDate = [];
@@ -176,47 +192,51 @@ render(){
       <p><span className="plantProfileBold">Created </span>{this.state.plantInfo.created_at}</p>
           <p><span className="plantProfileBold">Description: </span>{this.state.plantInfo.description}</p>
         </div>
-        <div className="plantProfileBookingDates">
-        <h3>Book this plant:</h3>
-        <div class="plantProfileBookingGrid">
-          <span>
-            <p>From:</p>
-            <DatePicker
-                todayButton={"Today"}
-                selected={this.state.startDate}
-                selectsStart
-                startDate={this.state.startDate}
-                endDate={this.state.endDate}
-                onChange={this.handleChangeStart}
-                minDate={ listDate[0] }
-                maxDate={ listDate[listDate.length - 1] }
-                highlightDates={ highlighted }
-                excludeDates={ bookedDates }
-                placeholderText="Select a Start Date"
-              />
-            </span>
+        { localStorage.getItem("jwt") ?
+          <div className="plantProfileBookingDates">
+          <h3>Book this plant:</h3>
+          <div class="plantProfileBookingGrid">
             <span>
-              <p>To:</p>
+              <p>From:</p>
               <DatePicker
                   todayButton={"Today"}
-                  selected={this.state.endDate}
-                  selectsEnd
+                  selected={this.state.startDate}
+                  selectsStart
                   startDate={this.state.startDate}
                   endDate={this.state.endDate}
-                  onChange={this.handleChangeEnd}
+                  onChange={this.handleChangeStart}
                   minDate={ listDate[0] }
                   maxDate={ listDate[listDate.length - 1] }
                   highlightDates={ highlighted }
                   excludeDates={ bookedDates }
-                  placeholderText="Select an End Date"
-              />
-            </span>
+                  placeholderText="Select a Start Date"
+                />
+              </span>
+              <span>
+                <p>To:</p>
+                <DatePicker
+                    todayButton={"Today"}
+                    selected={this.state.endDate}
+                    selectsEnd
+                    startDate={this.state.startDate}
+                    endDate={this.state.endDate}
+                    onChange={this.handleChangeEnd}
+                    minDate={ listDate[0] }
+                    maxDate={ listDate[listDate.length - 1] }
+                    highlightDates={ highlighted }
+                    excludeDates={ bookedDates }
+                    placeholderText="Select an End Date"
+                />
+              </span>
+            </div>
+            <form onSubmit={ this._handleSubmit }>
+              <input type="submit" value="Book Now" />
+            </form>
           </div>
-          <form onSubmit={ this._handleSubmit }>
-            <input type="submit" value="Book Now" />
-          </form>
+          : ""
+        }
         </div>
-      </div>
+
       <div className="commentSection">
       <h3>Comments</h3>
         {this.state.comments.map((c) => {
@@ -226,24 +246,30 @@ render(){
 
           </div>
         })}
+        {localStorage.getItem("jwt") ?
+          <div>
+            <h3>Make a comment</h3>
+            <form onSubmit={ this._handleSubmitComment }>
+            Rating:
+              <select onChange={ this._handleChangeRating } required>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
 
-        <h3>Make a comment</h3>
-        <form onSubmit={ this._handleSubmitComment }>
-        Rating:
-          <select onChange={ this._handleChangeRating } required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
+            Comment:
+              <input type="textarea" onChange={ this._handleChangeComment } required/>
+              <input type="submit" value="sumbit" />
+            </form>
+          </div>
+          : "" }
 
-        Comment:
-          <input type="textarea" onChange={ this._handleChangeComment } required/>
-          <input type="submit" value="sumbit" />
-        </form>
       </div>
-      <div className="plantProfileButtonArea"><Link to={"/plants/"+ this.props.match.params.id +"/edit"}>Edit Plant</Link></div>
+      { this.state.user.id === this.state.plantInfo.user_id ?
+          <div className="plantProfileButtonArea"><Link to={"/plants/"+ this.props.match.params.id +"/edit"}>Edit Plant</Link></div>
+      : "" }
     </div>
   )
 }

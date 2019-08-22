@@ -55,14 +55,6 @@ class UserProfile extends Component {
     return images[randomNum];
   }
 
-  // {this.state.user.bookings.map((b) => {
-  //   return <p>Booking plant: {b.plant_id}</p>
-  // })}
-  //
-  // {this.state.user.plant.map((p) => {
-  //   return <p>Plant: {p.name ? p.name : ""}</p>
-  // })}
-
   render() {
     const profileImg = this.randomImg();
     const user = this.state.user;
@@ -82,10 +74,10 @@ class UserProfile extends Component {
                 <div className="userAssociationGrid">
                 {this.state.user.user.plants.map((p) => {
                   return <p className="UserPlantOwn" key={p.id}>
-                     {p.name}
                      <Link to={ "/plants/" + p.id }>
                      <Image cloudName="dto4pzoz6" publicId={p.images} width="300" className="allPlantsShow" />
                      </Link>
+                     <h4>{p.name}</h4>
                    </p>
                 })}
                 </div>
@@ -94,10 +86,12 @@ class UserProfile extends Component {
               <div className="userAssociationGrid">
                 {this.state.user.user.bookings.map((b) => {
                   return <p className="UserPlantBook" key={b.id}>
-                     {b.plant.name}
                      <Link to={ "/plants/" + b.plant_id }>
                      <Image cloudName="dto4pzoz6" publicId={b.plant.images} width="300" className="allPlantsShow" />
                      </Link>
+
+                     <h4>{b.plant.name}</h4>
+                     {b.from} - {b.to}
                    </p>
                 })}
               </div>

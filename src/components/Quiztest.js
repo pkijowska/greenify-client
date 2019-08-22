@@ -141,7 +141,8 @@ whatPlant() {
 
 
     {this.whatPlant()}
-
+      <h2>Correct:{this.state.correct}</h2>
+      <h2>InCorrect:{this.state.inCorrect}</h2>
 
 
     </div>

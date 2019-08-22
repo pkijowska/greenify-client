@@ -107,14 +107,13 @@ class Quiz1 extends Component {
 
   displayPlants (score) {
     if (score > 80) {
-      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwQLi0FWoJsR_j0d2Tsh9bY9JamzsAFUHqNIcYw1zzgj1MLRKg"
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRag8LE7duaC6yMy2NiLFqjTDHeyQPFttxZxOW5Z94R1V9GEQSo"
     }
     else if (score > 35) {
-      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2iDokEGy_0ektSu1gXICFuxDZTebUmVb3kWgrQnY8nZ9hQ76K"
+      return "https://cdn.shopify.com/s/files/1/1240/2004/products/lawn-patio-lightningstore-cute-pink-blue-yellow-green-happy-angry-face-flower-plant-tea-pot-succulent-box-planter-flower-pot-eco-bottle-miniature-miero-landscape-vivaria-plants-pot-1_grande.jpg?v=1553201233"
     }
     else {
-
-       return "http://www.bcgardenclub.org/_/rsrc/1539102774545/files/calendar/events/2018oct30plantdiseasesbyhowardwaterworthphd/sickplant.png?height=400&width=294"
+       return "http://cdn.shopify.com/s/files/1/1240/2004/products/lawn-patio-lightningstore-cute-green-pink-blue-yellow-happy-angry-face-flower-plant-tea-pot-succulent-box-planter-flower-pot-eco-bottle-miniature-miero-landscape-vivaria-plants-pot-1_grande.jpg?v=1553200328"
     }
   }
 
