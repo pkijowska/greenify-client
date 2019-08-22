@@ -1,34 +1,34 @@
 let qBank = [{
-  question: "What percentage of life is found in the ocean?",
-  answers: ["85%", "50%", "75%", "60%"],
-  correct: "85%",
+  question: "I am calm and collected",
+  answers: ["Yes", "No"],
+  correct: "Yes",
   questionID: "1"
 },
 
 {
-  question: "What country is named after a tree?",
-  answers: ["Peru", "Brazil", "Spain", "Portugal"],
-  correct: "Brazil",
+  question: "I love meeting new people",
+  answers: ["Yes", "No"],
+  correct: "No",
   questionID: "2"
 },
 
 {
-  question: "Where does the suicide plant grow?",
-  answers: ["Singapoire", "Malaysia", "Australia", "Hong Kong"],
-  correct: "Australia",
+  question: "I like when others touch me",
+  answers: ["Yes", "No"],
+  correct: "No",
   questionID: "3"
 },
 
 {
-  question: "Where was the first founded botanical garden?",
-  answers: ["Italy", "San Remo", "Vatican", "France" ],
-  correct: "Vatican",
+  question: "I hate sunbathing",
+  answers: ["Yes", "No" ],
+  correct: "No",
   questionID: "4"
 
 },
 
 {
-  question: "One of the below is the name of the flower",
+  question: "I ",
   answers: ["Hooker's Bum", "Hooker's Lips", "Lips of an angel", "Bubblebe Bum"],
   correct: "Hooker's Lips",
   questionID: "5"
@@ -39,12 +39,6 @@ let qBank = [{
   answers: ["Hooker's Bum", "Hooker's Lips", "Lips of an angel", "Bubblebe Bum"],
   correct: "Hooker's Lips",
   questionID: "6"
-},
-{
-  question: "What is the word's fastest growing plant?",
-  answers: ["Bamboo", "Sunflower", "Grass", "Daisy"],
-  correct: "Bamboo",
-  questionID: "7"
 }
 
 ];
