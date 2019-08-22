@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import serverURL from "../ServerURL";
+import moment from "moment";
 
 const SERVER_URL = serverURL('plants.json');
 
@@ -18,9 +19,6 @@ class PlantContainer extends Component {
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleInputSearch = this._handleInputSearch.bind(this);
 
-
-
-
     const fetchPlants =() => {
       axios.get(SERVER_URL).then((result) => {
         this.setState({plants: result.data});
@@ -28,7 +26,8 @@ class PlantContainer extends Component {
         setTimeout(fetchPlants, 40000);
       });
     };
-    fetchPlants();
+
+  fetchPlants();
   }
 
     _handleSubmit (event) {
@@ -65,16 +64,26 @@ class PlantContainer extends Component {
 
 
 class Gallery extends Component {
+  checkingdate(created_at) {
+    let checkdate = created_at;
+    console.log(checkdate);
+    let newInTown = 'New';
+    if (moment().format("l") == moment(checkdate).format("l")) {
+        return newInTown;
+      }
+  }
+
   render() {
     return(
       <div className="allPlantsGrid">
         {this.props.plants.map((plant) => {
 
           const plantpara = <p key={plant.id}>
-             {plant.name}
+
              <Link to={ "/plants/" + plant.id }>
              <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
              </Link>
+             <h4>{plant.name}</h4><span className="newPlant">{this.checkingdate(plant.created_at)}</span>
            </p>;
            console.log(plantpara);
            const query = this.props.query.toLowerCase();
