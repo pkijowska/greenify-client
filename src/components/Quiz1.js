@@ -55,6 +55,8 @@ class Quiz1 extends Component {
     this.handleClick1 = this.handleClick1.bind(this);
     this.handleClick2 = this.handleClick2.bind(this);
     this.handleClickStart = this.handleClickStart.bind(this);
+    this.handleReset = this.handleReset.bind(this);
+    this.displayPlants = this.displayPlants.bind(this);
 
   }
   handleClickStart(){
@@ -92,30 +94,53 @@ class Quiz1 extends Component {
   handleClick2() {
     this.handleClick(2);
   }
+  handleReset() {
+    console.log("clicked");
+      this.setState({
+        index: 0,
+        score: 0,
+        isgamefinished: false,
+        quizStart:false,
+
+    });
+  }
+
+  displayPlants (score) {
+    if (score > 80) {
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwQLi0FWoJsR_j0d2Tsh9bY9JamzsAFUHqNIcYw1zzgj1MLRKg"
+    }
+    else if (score > 35) {
+      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ2iDokEGy_0ektSu1gXICFuxDZTebUmVb3kWgrQnY8nZ9hQ76K"
+    }
+    else {
+
+       return "http://www.bcgardenclub.org/_/rsrc/1539102774545/files/calendar/events/2018oct30plantdiseasesbyhowardwaterworthphd/sickplant.png?height=400&width=294"
+    }
+  }
+
 
   render () {
     return (
-      <div>
-        <h1> Quizz about Plants </h1>
+      <div className="backgroundimg">
+        <h1 className="title"> Quizz about Plants </h1>
         <div className= {this.state.quizStart ? 'hidden quizEndDiv': 'quizEndDiv'}  >
-          <h2>Do you have the green thumbs and know-how to ace this quiz on plants and flowers? Challenge yourself to get 100%</h2>
-          <img className="quizplant" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFBsbt1ZyJpIfKI8R9NzWYVejFaExbdakMmWoa8jj85GGf-1kE" alt="Plant"/><br/>
-          <button onClick ={this.handleClickStart}>Start the Quiz</button>
+          <h2 className="subtitle">Do you have the green thumbs and know-how to ace this quiz on plants and flowers? Challenge yourself to get 100%</h2>
+          <button className="answerBtn" onClick ={this.handleClickStart}>Start the Quiz</button>
         </div>
 
         <div className={this.state.isgamefinished || !this.state.quizStart? 'hidden' : ''}>
-            <p>score: {((this.state.score/this.state.quizz.length)*100).toFixed(2)}%</p>
-            <h3>{this.state.quizz[this.state.index].question}</h3>
-            <button onClick ={ this.handleClick1 }>
+            <h3 className="subtitle">{this.state.quizz[this.state.index].question}</h3>
+            <button className="answerBtn" onClick ={ this.handleClick1 }>
                 {this.state.quizz[this.state.index].answers[0]}
             </button><br/><br/>
-            <button onClick ={ this.handleClick2 }>
+            <button className="answerBtn" onClick ={ this.handleClick2 }>
               {this.state.quizz[this.state.index].answers[1]}
             </button>
         </div>
-
         <div className={this.state.isgamefinished ? '' : 'hidden'}>
             <h1>your knowledge on plants is: {((this.state.score/this.state.quizz.length)*100).toFixed(2)}%</h1>
+            <img className="finalImg" src = {this.displayPlants((this.state.score/this.state.quizz.length)*100)}/>
+            <button className="answerBtn" onClick = {this.handleReset}>Reset</button>
         </div>
       </div>
 
