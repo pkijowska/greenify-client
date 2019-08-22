@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
+import moment from "moment";
 import serverURL from "../ServerURL";
 import avatar1 from "../images/avatars/boy-1.svg"
 import avatar2 from "../images/avatars/boy.svg"
@@ -91,7 +92,7 @@ class UserProfile extends Component {
                      </Link>
 
                      <h4>{b.plant.name}</h4>
-                     {b.from} - {b.to}
+                     {moment(b.from).format('MMM Do')} - {moment(b.to).format('MMM Do')}
                    </p>
                 })}
               </div>
