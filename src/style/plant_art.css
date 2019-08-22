@@ -79,3 +79,98 @@
     width:200px;
   }
 }
+
+
+.container{
+  width: 80%;
+  margin: auto;
+  display: flex;
+  height: 60vh;
+  align-items: center;
+}
+.card-container {
+  display: inline-block;
+  margin: 0 auto;
+
+  /* better flipping effect */
+  perspective: 900px;
+  text-align: center;
+}
+.card {
+  position: relative;
+  width: 340px;
+  height: 280px;
+  /* it makes the card flip slower! Nicer effect!*/
+  transition: all 0.6s ease;
+  /* without it the cards would not be displaying the back! And the text would be backwards after flipping */
+  transform-style: preserve-3d;
+}
+.front, .back {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border-radius: 5px;
+color: white;
+box-shadow: 0 27px 55px 0 rgba(0, 0, 0, 0.3), 0 17px 17px 0 rgba(0, 0, 0, 0.15);
+/* this is essential to have the backflip work */
+backface-visibility: hidden;
+}
+.front {
+  background-color: var(--main-green-light);
+  font-size: 12px;
+}
+.card-img{
+  background: black;
+  width: 100%;
+  height: 210px;
+  /*THank you Lucy for showing me this! It clips the img and fit into a specified area */
+  overflow:hidden;
+}
+.card-body{
+    width: 100%;
+    height: 150px;
+  }
+  .card-footer{
+    font-size: 16px;
+  }
+
+.back {
+  background: var(--main-violet-light);
+  font-size: 14px;
+
+  }
+
+
+.pelBack{
+  display: block;
+  padding-top: 40px;
+  font-weight: bold;
+}
+
+  .flipbutton {
+    background-color: var(--main-violet2-very-light);
+    border-radius: 4px;
+    border: solid 1px var(--main-green-dark);
+    color: var(--main-green-dark);
+    padding: .5em 1em;
+    height: 50px;
+    width: 200px;
+}
+
+/* we need to have both rotateY and rotateX - otherwise it would not work */
+.card-container:hover .card {
+transform: rotateY(180deg);
+}
+.back {
+transform: rotateY(180deg);
+}
+
+.em{
+  padding-left: 120px;
+}
+
+.titleCard {
+
+}

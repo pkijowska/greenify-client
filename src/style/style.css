@@ -19,6 +19,9 @@ html {
 	--main-blue-med: #2898a5;
 	--main-blue-light: #65e1f7;
   --main-blue-very-light: #c6e5e5;
+
+  --main-violet-light: #B694DA;
+  --main-violet2-very-light: #d9b5e6;
 }
 
 
@@ -417,6 +420,8 @@ opacity: 0.6;
 .quiztest {
   color: var(--main-green-med);
     font-family: 'Satisfy', cursive;
+    font-size: 50px;
+    text-align: center;
 }
 
 .newPlant {
