@@ -420,7 +420,15 @@ opacity: 0.6;
 }
 
 .newPlant {
-  color: var(--main-green-med);
+  color: var(--main-green-very-light);
+  background-color: var(--main-green-med);
+  border-radius: 4px;
+  margin: 0 5px;
+  padding: 4px 2px;
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.allPlantsGrid h4 {
+  display: inline;
 }
