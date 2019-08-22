@@ -375,9 +375,8 @@ select {
 }
 
 .backgroundimg {
+  background-color: var(--main-green-very-light);
   box-shadow: 0 0 20px var(--main-neutral-dark_rgba);
-  background-image: url("https://www.chateauelan.com/wp-content/uploads/2013/05/420838.jpg");
-  border-radius: 40px;
 }
 .subtitle {
   text-align: left;
