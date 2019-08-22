@@ -270,7 +270,7 @@ render(){
 
             Comment:
               <input type="textarea" onChange={ this._handleChangeComment } required/>
-              <input type="submit" value="sumbit" />
+              <input type="submit" value="submit" />
             </form>
           </div>
           : "" }
