@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import serverURL from "../ServerURL";
 import avatar1 from "../images/avatars/boy-1.svg"
@@ -19,21 +20,29 @@ class UserProfile extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      user: ""
+      user: "",
+      isLoaded: false
     }
 
     console.log(this)
     const url = serverURL("/api/users/" + this.props.match.params.id);
+
     // to get the token and send it through the header, you need to add "bearer" with a space after it at the beginning.
     const token = "Bearer " + localStorage.getItem("jwt");
-    const getPlants = function () {
+    const getUser = function () {
       // make a post request with a header with Auth token sent through. Will only send if logged in, otherwise will cause error.
       axios.get(url)
       .then(response => {
         this.setState({ user: response.data })
+
+      })
+      .then(r => {
+        this.setState({ isLoaded: true })
       })
       .catch(error => console.log('error', error));
     }.bind(this)();
+
+
 
     this.randomImg = this.randomImg.bind(this);
 
@@ -46,19 +55,59 @@ class UserProfile extends Component {
     return images[randomNum];
   }
 
+  // {this.state.user.bookings.map((b) => {
+  //   return <p>Booking plant: {b.plant_id}</p>
+  // })}
+  //
+  // {this.state.user.plant.map((p) => {
+  //   return <p>Plant: {p.name ? p.name : ""}</p>
+  // })}
+
   render() {
     const profileImg = this.randomImg();
     const user = this.state.user;
-    return (
-      <div className="userProfile">
-            <div key={this.state.user.id}>
-              <h2>{this.state.user.name}</h2>
-              <img src={ profileImg } className="profile" />
-              {this.state.user.email}
-              {this.state.user.admin}
-              {this.state.user.is_seller}
-            </div>
-      </div>)
+    {if (this.state.isLoaded) {
+      console.log(this.state.user);
+      return (
+        <div className="userProfile">
+              <div key={this.state.user.user.id}>
+                <h2>{this.state.user.user.name}</h2>
+                <img src={ profileImg } className="profile" />
+                {this.state.user.user.email}
+                {this.state.user.user.admin}
+                {this.state.user.user.is_seller}
+              </div>
+
+                <h3>Plants:</h3>
+                <div className="userAssociationGrid">
+                {this.state.user.user.plants.map((p) => {
+                  return <p className="UserPlantOwn" key={p.id}>
+                     {p.name}
+                     <Link to={ "/plants/" + p.id }>
+                     <Image cloudName="dto4pzoz6" publicId={p.images} width="300" className="allPlantsShow" />
+                     </Link>
+                   </p>
+                })}
+                </div>
+
+              <h3>Bookings:</h3>
+              <div className="userAssociationGrid">
+                {this.state.user.user.bookings.map((b) => {
+                  return <p className="UserPlantBook" key={b.id}>
+                     {b.plant.name}
+                     <Link to={ "/plants/" + b.plant_id }>
+                     <Image cloudName="dto4pzoz6" publicId={b.plant.images} width="300" className="allPlantsShow" />
+                     </Link>
+                   </p>
+                })}
+              </div>
+
+        </div>)
+    }
+    else {
+      return <div>loading...</div>
+    }}
+
   }
 }
 

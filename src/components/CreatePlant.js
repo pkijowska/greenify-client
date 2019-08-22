@@ -27,11 +27,11 @@ class CreatePlant extends Component {
 
   handleDateFromChange(event) {
     console.log("from");
-    this.setState({ date_from: event});
+    this.setState({ from: event});
   }
 
   handleDateToChange(event) {
-    this.setState({ date_to: event});
+    this.setState({ to: event});
   }
 
   handleFileChange(event) {
@@ -42,8 +42,12 @@ class CreatePlant extends Component {
       event.preventDefault();
 
       //1. Create plant object by collecting different attributes from state.
-      const { name, age, status, cost, worth, description } = this.state;
-      const plant = {name, age, status, cost, worth, description};
+      const { name, age, status, cost, worth, description, from, to } = this.state;
+      const plant = {name, age, status, cost, worth, description,
+        availability: {
+          from: this.state.from,
+          to: this.state.to}};
+      console.log(plant);
       //2. Plant object doesn't have image/file, since file is uploaded as Multipart Form Data request in HTTP **. (read more at https://stackoverflow.com/questions/16958448/what-is-http-multipart-request)
       //** - Although there is a workaround to encode file in base64 and then use it in json payload. ////However this is not recommended.
 
@@ -84,8 +88,8 @@ class CreatePlant extends Component {
           onFileChange={this.handleFileChange}
           onDateFromChange={this.handleDateFromChange}
           onDateToChange={this.handleDateToChange}
-          date_from={this.state.date_from}
-          date_to={this.state.date_to}
+          date_from={this.state.from}
+          date_to={this.state.to}
           onSubmit={this.handleSubmit}
           buttonLabel = "Add Plant"
           plant={{}} />

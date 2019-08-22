@@ -360,3 +360,14 @@ select {
   margin-left: 20px;
   margin-bottom: 20px;
 }
+
+.userAssociationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+}
+
+.UserPlantBook,
+.UserPlantOwn {
+  background-color: var(--main-neutral-very-light);
+  border-radius: 10px;
+}
