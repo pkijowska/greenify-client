@@ -21,6 +21,7 @@ html {
   --main-blue-very-light: #c6e5e5;
 }
 
+
 /* GENERAL ********************************************************************/
 
 * {
@@ -345,10 +346,11 @@ select {
 .title {
   font-family: 'Satisfy', cursive;
   font-size: 50px;
-  color: #77b300;
+  color: var(--main-green-med);
   margin-bottom: 20px;
   padding: 11px;
   text-align: center;
+  font-weight: 400;
 
 }
 
@@ -363,16 +365,17 @@ select {
   margin-bottom: 20px;
   font-size: 20px;
 }
+
 .avatar {
     border-radius: 25px;
     width: 1.8em;
     height: 1.8em;
-    margin-top: 11px;
-    padding: 2px;
-    vertical-align: top;
+    padding-right: 5px;
+    vertical-align: middle;
 }
-.backgroundimg {
 
+.backgroundimg {
+  box-shadow: 0 0 20px var(--main-neutral-dark_rgba);
   background-image: url("https://www.chateauelan.com/wp-content/uploads/2013/05/420838.jpg");
   border-radius: 40px;
 }
@@ -389,12 +392,21 @@ select {
 }
 
 .userAssociationGrid {
-  display: grid;
-  grid-template-columns: repeat(3, auto);
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
 }
 
 .UserPlantBook,
 .UserPlantOwn {
-  background-color: var(--main-neutral-very-light);
+  margin: 10px;
+  max-width: calc(30% - 20px);
+  text-align: left;
+}
+
+.UserPlantBook img,
+.UserPlantOwn img {
+  margin: 0 auto;
+  width: 100%;
   border-radius: 10px;
 }
