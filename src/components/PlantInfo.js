@@ -116,20 +116,29 @@ constructor(props){
     this.setState({rating: event.target.value});
   }
 
-  componentDidMount() {
-    if(!localStorage.getItem("jwt")) {
-      return;
+  checkingdate() {
+    let checkdate = this.state.plantInfo.created_at;
+    console.log(checkdate);
+    let newInTown = 'New';
+    if (moment().format("l") == moment(checkdate).format("l")) {
+        return newInTown;
+      }
+
     }
+    componentDidMount() {
+      if(!localStorage.getItem("jwt")) {
+        return;
+      }
 
-    const token = "Bearer " + localStorage.getItem("jwt");
+      const token = "Bearer " + localStorage.getItem("jwt");
 
-    axios({method: 'get', url: serverURL("/current_user"), headers: {'Authorization': token }})
-    .then(response => {
-      this.setState({ user: response.data })
-      console.log(this.state.user)
-    })
-    .catch(error => console.log('error', error));
-  }
+      axios({method: 'get', url: serverURL("/current_user"), headers: {'Authorization': token }})
+      .then(response => {
+        this.setState({ user: response.data })
+        console.log(this.state.user)
+      })
+      .catch(error => console.log('error', error));
+    }
 
 
 render(){
@@ -159,6 +168,12 @@ render(){
             bookedDates.push(new Date(b));
         }
       })
+
+
+
+
+
+
       // TODO: filter through dates to make an availableDates list, and apply a style to that.
       const highlighted = [{ "bookedDates": bookedDates }];
   return(
@@ -172,6 +187,9 @@ render(){
           <p><span className="plantProfileBold">Age: </span>{this.state.plantInfo.age}</p>
           <p><span className="plantProfileBold">Cost: </span>${this.state.plantInfo.cost}</p>
           <p><span className="plantProfileBold">Worth: </span>${this.state.plantInfo.worth}</p>
+
+          <p>{this.checkingdate()}</p>
+      <p><span className="plantProfileBold">Created </span>{this.state.plantInfo.created_at}</p>
           <p><span className="plantProfileBold">Description: </span>{this.state.plantInfo.description}</p>
         </div>
         { localStorage.getItem("jwt") ?

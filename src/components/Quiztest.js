@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import serverURL from "../ServerURL";
 
-const SERVER_URL = serverURL('plants/58.json');
+const SERVER_URL = serverURL('/plants?name=Venus%20Fly%20Trap');
+const SERVER_MARANTA = serverURL('/plants?name=Maranta');
+const SERVER_LOTUS = serverURL('/plants?name=Micro%20Lotus');
 
 class Quiztest extends React.Component {
   constructor(){
@@ -39,7 +41,9 @@ class Quiztest extends React.Component {
       inCorrect:0,
       plantName2: "Venus Flytrap",
       plantName1: "Maranta",
-      plants: []
+      venus: [],
+      maranta: [],
+      lotus: []
     }
 
     this.whatPlant=this.whatPlant.bind(this);
@@ -57,31 +61,62 @@ class Quiztest extends React.Component {
     }))
   }
 
-  const fetchingPlants =() => {
+  const fetchingVenus =() => {
     axios.get(SERVER_URL).then((result) => {
 
-      this.setState({plants: result.data});
+      this.setState({venus: result.data});
       console.log(result.data);
     });
   };
-  fetchingPlants();
+  fetchingVenus();
+
+  const fetchingMaranta =() => {
+    axios.get(SERVER_MARANTA).then((result) => {
+
+      this.setState({maranta: result.data});
+      console.log(result.data);
+    });
+  };
+  fetchingMaranta();
+
+
+  const fetchingLotus =() => {
+    axios.get(SERVER_LOTUS).then((result) => {
+
+      this.setState({lotus: result.data});
+      console.log(result.data);
+    });
+  };
+  fetchingLotus();
+
 }
 
 whatPlant() {
      if ((this.state.correct===3) && (this.state.count === 5)) {
-       return <p> Your spirit plant is : {this.state.plantName1} . You are protective, friendly, and people can count on you to get things done! </p>;
+       return <div> <h1> Your spirit plant is : {this.state.plantName1} </h1> <p> You are protective, friendly, and people can count on you to get things done! </p>
+          <p> Are you interested in renting it out? Click on the picture below: </p>
+       <Link to={ "/plants/" + this.state.maranta.id }>
+       <Image cloudName="dto4pzoz6" publicId={this.state.maranta.images} width="300" className="allPlantsShow" />
+       </Link>
+        </div>;
 
     }
     else if ((this.state.correct===2) && (this.state.count === 5)){
-      return <div> Your spirit plant is :{this.state.plantName2} You're known for being misterious, extremely clever, and a bit shy, too!
-        <Link to={ "/plants/58" }>
-        <Image cloudName="dto4pzoz6" publicId={this.state.plants.images} width="300" className="allPlantsShow" />
+      return <div> <h2> Your spirit plant is: {this.state.plantName2} </h2><p> You're known for being misterious, extremely clever, and a bit shy, too! </p> <p>Are you interested in renting it out? Click on the picture below:</p>
+        <Link to={ "/plants/" + this.state.venus.id }>
+        <Image cloudName="dto4pzoz6" publicId={this.state.venus.images} width="300" className="allPlantsShow" />
         </Link>
 
        </div> ;
     }
-    else if ((this.state.correct===4) && (this.state.count === 5)){
-      return <h1> You are a lotus flower! You're beautiful inside and out and known to be quite charismatic and wise! </h1> ;
+    else if ((this.state.correct===4 || this.state.correct===1) && (this.state.count === 5)){
+      return <div> <h2>Your spirit plant is : You are a lotus flower! </h2> <p>You're beautiful inside and out and known to be quite charismatic and wise! </p> <p>Are you interested in renting it out? Click on the picture below: </p>
+      <Link to={ "/plants/" + this.state.lotus.id }>
+      <Image cloudName="dto4pzoz6" publicId={this.state.lotus.images} width="300" className="allPlantsShow" />
+      </Link>
+
+     </div> ;
+
 
     }
     else {
@@ -94,6 +129,8 @@ whatPlant() {
   render(){
   return(
     <div>
+<h1 class="quiztest"> What is your spirit plant? </h1>
+<h3 class="quiztest"> Answer questions below to find out: </h3>
       {(this.state.count<5) && <Layout
         question={this.state.data[this.state.count].question}
         options={this.state.data[this.state.count].options}
@@ -129,7 +166,7 @@ class Layout extends React.Component{
       <h2>{this.props.question}</h2>
       {
         this.props.options.map(option=>{
-          return <button onClick={(this.handleClick)} value={option}>{option}</button>
+          return <button className="answerBtn" onClick={(this.handleClick)} value={option}>{option}</button>
         })
       }
   </div>
