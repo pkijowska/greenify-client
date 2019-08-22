@@ -149,6 +149,9 @@ render(){
         // generate a Date for from and to values.
         const dateFrom = new Date(p.from);
         const dateTo = new Date(p.to);
+
+
+  
         // .getDate() returns the day of the month, if it is the 6th of August, it will return 6.
         // .setDate() sets the date, so by running this instead of d++, we are incrementing the date every loop.
         // Loop through dates from the start date until the end date, each loop increment the date by 1.
@@ -189,7 +192,7 @@ render(){
           <p><span className="plantProfileBold">Worth: </span>${this.state.plantInfo.worth}</p>
 
           <p>{this.checkingdate()}</p>
-      <p><span className="plantProfileBold">Created </span>{this.state.plantInfo.created_at}</p>
+      <p><span className="plantProfileBold">Created </span>{moment(this.state.plantInfo.created_at).format('l')}</p>
           <p><span className="plantProfileBold">Description: </span>{this.state.plantInfo.description}</p>
         </div>
         { localStorage.getItem("jwt") ?
@@ -256,7 +259,7 @@ render(){
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5">5</option>
+                <option value="5" selected="selected">5</option>
               </select>
 
             Comment:
