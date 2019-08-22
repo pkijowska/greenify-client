@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import ReactDOM from "react-dom";
 
-class App extends React.Component {
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
+import serverURL from "../ServerURL";
+
+const SERVER_URL = serverURL('plants/58.json');
+
+class Quiztest extends React.Component {
   constructor(){
     super()
     this.state={
@@ -30,7 +36,10 @@ class App extends React.Component {
       ],
       count:0,
       correct:0,
-      inCorrect:0
+      inCorrect:0,
+      plantName2: "Venus Flytrap",
+      plantName1: "Maranta",
+      plants: []
     }
 
     this.whatPlant=this.whatPlant.bind(this);
@@ -48,17 +57,32 @@ class App extends React.Component {
     }))
   }
 
+  const fetchingPlants =() => {
+    axios.get(SERVER_URL).then((result) => {
 
+      this.setState({plants: result.data});
+      console.log(result.data);
+    });
+  };
+  fetchingPlants();
 }
+
 whatPlant() {
      if ((this.state.correct===3) && (this.state.count === 5)) {
-       return <h1> You are venus flytrap </h1>;
+       return <p> Your spirit plant is : {this.state.plantName1} . You are protective, friendly, and people can count on you to get things done! </p>;
+
     }
     else if ((this.state.correct===2) && (this.state.count === 5)){
-      return <h1> You are a succulent </h1> ;
+      return <div> Your spirit plant is :{this.state.plantName2} You're known for being misterious, extremely clever, and a bit shy, too!
+        <Link to={ "/plants/58" }>
+        <Image cloudName="dto4pzoz6" publicId={this.state.plants.images} width="300" className="allPlantsShow" />
+        </Link>
+
+       </div> ;
     }
     else if ((this.state.correct===4) && (this.state.count === 5)){
-      return <h1> You are a micro Lotus </h1> ;
+      return <h1> You are a lotus flower! You're beautiful inside and out and known to be quite charismatic and wise! </h1> ;
+
     }
     else {
       return
@@ -82,6 +106,8 @@ whatPlant() {
     {this.whatPlant()}
       <h2>Correct:{this.state.correct}</h2>
       <h2>InCorrect:{this.state.inCorrect}</h2>
+    
+
     </div>
   )
 }
@@ -110,9 +136,6 @@ class Layout extends React.Component{
   )
 }
 }
-ReactDOM.render(
-        <App/>,
-        document.getElementById("root")
-    )
 
-export default App;
+
+export default Quiztest;

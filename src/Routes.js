@@ -17,7 +17,7 @@ import Bookings from './components/Bookings';
 import PlantInfo from './components/PlantInfo';
 import Quiz1 from './components/Quiz1';
 import Quiz from './components/Quiz';
-import Quiztest from './components/quiztest';
+import Quiztest from './components/Quiztest';
 
 
 
