@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/greenify-client/static/css/main.63577360.chunk.css",
-    "main.js": "/greenify-client/static/js/main.71945451.chunk.js",
-    "main.js.map": "/greenify-client/static/js/main.71945451.chunk.js.map",
+    "main.css": "/greenify-client/static/css/main.2676e368.chunk.css",
+    "main.js": "/greenify-client/static/js/main.6a01f7a1.chunk.js",
+    "main.js.map": "/greenify-client/static/js/main.6a01f7a1.chunk.js.map",
     "runtime~main.js": "/greenify-client/static/js/runtime~main.a51f914c.js",
     "runtime~main.js.map": "/greenify-client/static/js/runtime~main.a51f914c.js.map",
     "static/css/2.cc034990.chunk.css": "/greenify-client/static/css/2.cc034990.chunk.css",
-    "static/js/2.bf96ebfb.chunk.js": "/greenify-client/static/js/2.bf96ebfb.chunk.js",
-    "static/js/2.bf96ebfb.chunk.js.map": "/greenify-client/static/js/2.bf96ebfb.chunk.js.map",
+    "static/js/2.b31415d1.chunk.js": "/greenify-client/static/js/2.b31415d1.chunk.js",
+    "static/js/2.b31415d1.chunk.js.map": "/greenify-client/static/js/2.b31415d1.chunk.js.map",
     "index.html": "/greenify-client/index.html",
-    "precache-manifest.742b9590ccd689f5875f9be32fc09879.js": "/greenify-client/precache-manifest.742b9590ccd689f5875f9be32fc09879.js",
+    "precache-manifest.9c588690a84f71c554c5678e2df43136.js": "/greenify-client/precache-manifest.9c588690a84f71c554c5678e2df43136.js",
     "service-worker.js": "/greenify-client/service-worker.js",
     "static/css/2.cc034990.chunk.css.map": "/greenify-client/static/css/2.cc034990.chunk.css.map",
-    "static/css/main.63577360.chunk.css.map": "/greenify-client/static/css/main.63577360.chunk.css.map",
+    "static/css/main.2676e368.chunk.css.map": "/greenify-client/static/css/main.2676e368.chunk.css.map",
     "static/media/boy-1.svg": "/greenify-client/static/media/boy-1.8547ceae.svg",
     "static/media/boy.svg": "/greenify-client/static/media/boy.eae74d36.svg",
     "static/media/style.css": "/greenify-client/static/media/dirt_short.d8f7b140.png",
@@ -25,6 +25,9 @@
     "static/media/man-3.svg": "/greenify-client/static/media/man-3.fcfc134f.svg",
     "static/media/man-4.svg": "/greenify-client/static/media/man-4.bef3aabb.svg",
     "static/media/man.svg": "/greenify-client/static/media/man.93ef09bc.svg",
-    "static/media/plant_feature.png": "/greenify-client/static/media/plant_feature.841213cf.png"
+    "static/media/plant_feature.png": "/greenify-client/static/media/plant_feature.841213cf.png",
+    "static/media/teapot_01.png": "/greenify-client/static/media/teapot_01.64904416.png",
+    "static/media/teapot_02.png": "/greenify-client/static/media/teapot_02.8ea4348a.png",
+    "static/media/teapot_03.png": "/greenify-client/static/media/teapot_03.b04f7c13.png"
   }
 }
