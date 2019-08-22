@@ -72,9 +72,8 @@ class Header extends Component {
           <Link to="/">Home</Link>
           <Link to="/plants">Plants</Link>
           { this.state.user.is_seller ? <Link to="/plants/new">Add Plant</Link> : "" }
-          <Link to="/quiztest">Quiz</Link>
           { this.state.user.admin ? <Link to="/users">Users</Link> : "" }
-          <Link to="/quiz1">Quiz1</Link>
+            <Link to="/quizfinal">Quizz... </Link>
 
 
           { localStorage.getItem("jwt") ?
