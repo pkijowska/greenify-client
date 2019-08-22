@@ -115,6 +115,15 @@ constructor(props){
     this.setState({rating: event.target.value});
   }
 
+  checkingdate() {
+    let checkdate = this.state.plantInfo.created_at;
+    console.log(checkdate);
+    let newInTown = 'New';
+    if (moment().format("l") == moment(checkdate).format("l")) {
+        return newInTown;
+      }
+    
+    }
 
 render(){
   let listDate = [];
@@ -143,6 +152,12 @@ render(){
             bookedDates.push(new Date(b));
         }
       })
+
+
+
+
+
+
       // TODO: filter through dates to make an availableDates list, and apply a style to that.
       const highlighted = [{ "bookedDates": bookedDates }];
   return(
@@ -156,6 +171,9 @@ render(){
           <p><span className="plantProfileBold">Age: </span>{this.state.plantInfo.age}</p>
           <p><span className="plantProfileBold">Cost: </span>${this.state.plantInfo.cost}</p>
           <p><span className="plantProfileBold">Worth: </span>${this.state.plantInfo.worth}</p>
+
+          <p>{this.checkingdate()}</p>
+      <p><span className="plantProfileBold">Created </span>{this.state.plantInfo.created_at}</p>
           <p><span className="plantProfileBold">Description: </span>{this.state.plantInfo.description}</p>
         </div>
         <div className="plantProfileBookingDates">

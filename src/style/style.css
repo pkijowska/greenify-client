@@ -363,6 +363,11 @@ select {
   margin-bottom: 20px;
   font-size: 20px;
 }
+
+button:hover {
+opacity: 0.6;
+}
+
 .avatar {
     border-radius: 25px;
     width: 1.8em;
@@ -397,4 +402,9 @@ select {
 .UserPlantOwn {
   background-color: var(--main-neutral-very-light);
   border-radius: 10px;
+}
+
+.quiztest {
+  color: var(--main-green-med);
+    font-family: 'Satisfy', cursive;
 }
