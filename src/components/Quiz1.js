@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import happyPlant from '../images/teapot_01.png';
+import cutePlant from '../images/teapot_02.png';
+import angryPlant from '../images/teapot_03.png';
 
 class Quiz1 extends Component {
   constructor() {
@@ -107,13 +110,13 @@ class Quiz1 extends Component {
 
   displayPlants (score) {
     if (score > 80) {
-      return "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRag8LE7duaC6yMy2NiLFqjTDHeyQPFttxZxOW5Z94R1V9GEQSo"
+      return happyPlant
     }
     else if (score > 35) {
-      return "https://cdn.shopify.com/s/files/1/1240/2004/products/lawn-patio-lightningstore-cute-pink-blue-yellow-green-happy-angry-face-flower-plant-tea-pot-succulent-box-planter-flower-pot-eco-bottle-miniature-miero-landscape-vivaria-plants-pot-1_grande.jpg?v=1553201233"
+      return cutePlant
     }
     else {
-       return "http://cdn.shopify.com/s/files/1/1240/2004/products/lawn-patio-lightningstore-cute-green-pink-blue-yellow-happy-angry-face-flower-plant-tea-pot-succulent-box-planter-flower-pot-eco-bottle-miniature-miero-landscape-vivaria-plants-pot-1_grande.jpg?v=1553200328"
+       return angryPlant
     }
   }
 

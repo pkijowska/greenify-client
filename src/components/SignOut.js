@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 
-const SignOut = () => {
-  localStorage.removeItem('jwt');
-  window.location.reload();
-  return <Redirect to='/signin' />
+class SignOut extends Component {
+  constructor () {
+    super();
+  }
+
+  render () {
+    localStorage.removeItem('jwt');
+    this.props.history.push("/");
+    window.location.reload();
+    return;
+  }
 }
 
 export default SignOut;
