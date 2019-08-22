@@ -37,6 +37,8 @@ class Header extends Component {
           <Link to="/plants/new">Add Plant</Link>
           <Link to="/quiz">Quiz</Link>
           <Link to="/users">Users</Link>
+          <Link to="/Quiz1">Quiz1</Link>
+
 
           { localStorage.getItem("jwt") ?
 
