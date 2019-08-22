@@ -189,7 +189,7 @@ render(){
       <h1 className="plantProfileTitle">{this.state.plantInfo.name}</h1>
       <div className="plantProfileGrid">
         <div className="plantProfileImage">
-          <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images} width="300" />
+          <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images}/>
         </div>
         <div className="plantProfileStats">
           <p><span className="plantProfileBold">Age: </span>{this.state.plantInfo.age}</p>

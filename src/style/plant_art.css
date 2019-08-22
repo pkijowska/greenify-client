@@ -79,3 +79,13 @@
     width:200px;
   }
 }
+
+
+/* RESPONSIVE *****************************************************************/
+
+@media only screen and (max-width: 600px) {
+  .plant {
+    transform: scale(0.4, 0.4);
+    right: 50px;
+  }
+}
