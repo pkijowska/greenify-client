@@ -12,6 +12,7 @@ class SignIn extends Component {
       name: "",
       email: "",
       password: "",
+      error: ""
     }
 
     // Bind all functions that use 'this'
@@ -33,12 +34,16 @@ class SignIn extends Component {
     })
     .then((results) => {
       console.log(results.data);
+      this.setState({error: ""})
       console.log(window)
       localStorage.setItem("jwt", results.data.jwt);
       this.props.history.push("/");
       window.location.reload();
     })
-    .catch(error => console.log('error', error));;
+    .catch(error => {
+      console.log('error', error);
+      this.setState({error: "Try Again."})
+    });;
   }
 
   _handleInputEmail (event) {
@@ -68,6 +73,7 @@ class SignIn extends Component {
           </label>
 
           <input type="submit" value="Sign In" />
+          <p>{this.state.error}</p>
         </form>
       </div>)
   }

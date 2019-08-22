@@ -14,6 +14,7 @@ class SignUp extends Component {
       password: "",
       confirm_password: "",
       seller: false,
+      error: ""
     }
 
     // Bind all functions that use 'this'
@@ -53,10 +54,14 @@ class SignUp extends Component {
           console.log(results.data);
           console.log(window)
           localStorage.setItem("jwt", results.data.jwt);
+          this.setState({error: ""});
           this.props.history.push("/");
           window.location.reload();
         })
-        .catch(error => console.log('error', error));
+        .catch(error => {
+          console.log('error', error);
+          this.setState({error: "Try Again."})
+        });;
     });
   }
 
@@ -97,22 +102,22 @@ class SignUp extends Component {
         <form onSubmit={ this._handleSumbit } >
           <label htmlFor="name">
             Name:
-            <input type="text" id="name" onChange={ this._handleInputName } />
+            <input type="text" id="name" onChange={ this._handleInputName } required />
           </label>
 
           <label htmlFor="email">
             Email:
-            <input type="email" id="email" onChange={ this._handleInputEmail } />
+            <input type="email" id="email" onChange={ this._handleInputEmail } required />
           </label>
 
           <label htmlFor="password">
             Password:
-            <input type="password" id="password" onChange={ this._handleInputPassword } />
+            <input type="password" id="password" onChange={ this._handleInputPassword } required />
           </label>
 
           <label htmlFor="confirm_password">
             Confirm Password:
-            <input type="password" id="confirm_password" onChange={ this._handleInputPasswordConfirmation } />
+            <input type="password" id="confirm_password" onChange={ this._handleInputPasswordConfirmation } required />
           </label>
 
           <label htmlFor="seller">
@@ -121,6 +126,7 @@ class SignUp extends Component {
           </label>
 
           <input type="submit" value="Create User" />
+          <p>{this.state.error}</p>
         </form>
       </div>)
   }
