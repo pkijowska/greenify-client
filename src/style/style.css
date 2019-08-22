@@ -418,3 +418,9 @@ opacity: 0.6;
   color: var(--main-green-med);
     font-family: 'Satisfy', cursive;
 }
+
+.newPlant {
+  color: var(--main-green-med);
+  text-transform: uppercase;
+  font-weight: bold;
+}
