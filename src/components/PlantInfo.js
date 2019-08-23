@@ -19,10 +19,11 @@ constructor(props){
     bookings: [],
     comments: [],
     comment: "",
-    rating: "",
+    rating: 5,
     startDate: "",
     endDate: "",
-    error: ""
+    error: "",
+    submitting: false,
   }
   // Handles the change of the start and end date teh user picks
   this.handleChangeStart = this.handleChangeStart.bind(this);
@@ -104,15 +105,22 @@ constructor(props){
 
   _handleSubmitComment (event) {
     event.preventDefault();
+    if (this.state.submitting === false) {
+      this.setState({submitting: true});
+      const token = "Bearer " + localStorage.getItem("jwt");
+      axios({method: 'post', url: serverURL(`plants/${ this.props.match.params.id }/comments`), headers: {'Authorization': token}, data: {
+        comment: {
+          comment: this.state.comment,
+          rating: this.state.rating,
+        }
 
-    const token = "Bearer " + localStorage.getItem("jwt");
-    axios({method: 'post', url: serverURL(`plants/${ this.props.match.params.id }/comments`), headers: {'Authorization': token}, data: {
-      comment: {
-        comment: this.state.comment,
-        rating: this.state.rating,
-      }
+      }}).then(() => {
+        window.location.reload()
+        this.setState({submitting: false});
+      });
+    }
 
-    }}).then(() => window.location.reload());
+
   }
 
   _handleChangeComment (event) {
