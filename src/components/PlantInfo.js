@@ -20,8 +20,9 @@ constructor(props){
     comments: [],
     comment: "",
     rating: "",
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: "",
+    endDate: "",
+    error: ""
   }
   // Handles the change of the start and end date teh user picks
   this.handleChangeStart = this.handleChangeStart.bind(this);
@@ -70,29 +71,35 @@ constructor(props){
 }
   // Handles the change of the start date teh user picks
   handleChangeStart(date) {
+    this.setState({error: ""});
       this.setState({
         startDate: date
       });
     }
   // Handles the change of the end date teh user picks
   handleChangeEnd(date) {
+    this.setState({error: ""});
       this.setState({
         endDate: date
       });
     }
+
   _handleSubmit (event) {
     event.preventDefault();
-    let from = this.state.startDate
-    let to = this.state.endDate
-    console.log("from " + from);
-    console.log("to " + to);
-    const token = "Bearer " + localStorage.getItem("jwt");
-    axios({method: 'post', url: serverURL(`plants/${ this.props.match.params.id }/bookings`), headers: {'Authorization': token}, data: {
-      booking: {
-        from: from,
-        to: to
-      }
-    }}).then(() => window.location.reload());
+    if (this.state.startDate != "" && this.state.endDate != "") {
+      let from = this.state.startDate
+      let to = this.state.endDate
+      const token = "Bearer " + localStorage.getItem("jwt");
+      axios({method: 'post', url: serverURL(`plants/${ this.props.match.params.id }/bookings`), headers: {'Authorization': token}, data: {
+        booking: {
+          from: from,
+          to: to
+        }
+      }}).then(() => window.location.reload());
+    }
+    else {
+      this.setState({error: "Select some dates"});
+    }
   }
 
   _handleSubmitComment (event) {
@@ -151,7 +158,7 @@ render(){
         const dateTo = new Date(p.to);
 
 
-  
+
         // .getDate() returns the day of the month, if it is the 6th of August, it will return 6.
         // .setDate() sets the date, so by running this instead of d++, we are incrementing the date every loop.
         // Loop through dates from the start date until the end date, each loop increment the date by 1.
@@ -174,17 +181,15 @@ render(){
 
 
 
+  // TODO: filter through dates to make an availableDates list, and apply a style to that.
+  const highlighted = [{ "bookedDates": bookedDates }];
 
-
-
-      // TODO: filter through dates to make an availableDates list, and apply a style to that.
-      const highlighted = [{ "bookedDates": bookedDates }];
   return(
     <div>
       <h1 className="plantProfileTitle">{this.state.plantInfo.name}</h1>
       <div className="plantProfileGrid">
         <div className="plantProfileImage">
-          <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images} width="300" />
+          <Image cloudName="dto4pzoz6" publicId={this.state.plantInfo.images}/>
         </div>
         <div className="plantProfileStats">
           <p><span className="plantProfileBold">Age: </span>{this.state.plantInfo.age}</p>
@@ -192,7 +197,7 @@ render(){
           <p><span className="plantProfileBold">Worth: </span>${this.state.plantInfo.worth}</p>
 
           <p>{this.checkingdate()}</p>
-      <p><span className="plantProfileBold">Created </span>{moment(this.state.plantInfo.created_at).format('l')}</p>
+          <p><span className="plantProfileBold">Created </span>{moment(this.state.plantInfo.created_at).format('l')}</p>
           <p><span className="plantProfileBold">Description: </span>{this.state.plantInfo.description}</p>
         </div>
         { localStorage.getItem("jwt") ?
@@ -235,6 +240,7 @@ render(){
             <form onSubmit={ this._handleSubmit }>
               <input type="submit" value="Book Now" />
             </form>
+            <p>{ this.state.error }</p>
           </div>
           : ""
         }
@@ -264,7 +270,7 @@ render(){
 
             Comment:
               <input type="textarea" onChange={ this._handleChangeComment } required/>
-              <input type="submit" value="sumbit" />
+              <input type="submit" value="submit" />
             </form>
           </div>
           : "" }

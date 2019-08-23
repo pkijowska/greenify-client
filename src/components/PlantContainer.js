@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Image } from 'cloudinary-react';
 import axios from 'axios';
 import serverURL from "../ServerURL";
+import moment from "moment";
 
 const SERVER_URL = serverURL('plants.json');
 
@@ -62,16 +63,26 @@ class PlantContainer extends Component {
 
 
 class Gallery extends Component {
+  checkingdate(created_at) {
+   let checkdate = created_at;
+   console.log(checkdate);
+   let newInTown = 'New';
+   if (moment().format("l") == moment(checkdate).format("l")) {
+       return true;
+     }
+ }
   render() {
     return(
       <div className="allPlantsGrid">
         {this.props.plants.map((plant) => {
+
           const plantpara = <div className="allPlantName"><p key={plant.id}>
-             {plant.name}
              <Link to={ "/plants/" + plant.id }>
              <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
              </Link>
-           </p>;</div>
+             <h4>{plant.name}</h4>{this.checkingdate(plant.created_at) ? <span className="newPlant">NEW</span> : ""}
+
+           </p></div>
            console.log(plantpara);
            const query = this.props.query.toLowerCase();
            const name = plant.name.toLowerCase();
