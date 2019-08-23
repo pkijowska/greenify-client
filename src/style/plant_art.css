@@ -81,6 +81,8 @@
 }
 
 
+
+
 .container{
   width: 80%;
   margin: auto;
@@ -170,4 +172,17 @@ transform: rotateY(180deg);
 
 .em{
   padding-left: 120px;
+}
+
+.titleCard {
+}
+
+/* RESPONSIVE *****************************************************************/
+
+@media only screen and (max-width: 600px) {
+  .plant {
+    transform: scale(0.4, 0.4);
+    right: 50px;
+  }
+
 }

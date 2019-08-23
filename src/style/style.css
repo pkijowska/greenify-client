@@ -90,6 +90,11 @@ textarea {
   display: block;
 }
 
+h4 {
+  margin: 0;
+  text-shadow: 2px 2px var(--main-green-very-light);
+}
+
 .wrapper {
   margin: 0 auto;
   max-width: 900px;
@@ -194,16 +199,36 @@ a.headerTitle {
 /* ALL PLANTS *****************************************************************/
 
 .allPlantsGrid {
+  width: 100%;
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 15px;
+
 }
+.allPlantsGrid p {
+  text-align: left;
+}
+.allPlantName {
+    display: block;
+    padding-bottom: 15px;
+}
+
+.allPlantName p {
+    display: block;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 
 .allPlantsShow {
   border-radius: 4px;
   display: block;
   object-fit: cover;
   max-height: 220px;
+  box-shadow: 0 0 20px var(--main-neutral-dark_rgba);
+
 }
 
 /* PLANT PROFILE **************************************************************/
@@ -249,12 +274,15 @@ a.headerTitle {
 }
 
 .plantProfileBookingGrid {
-  display: grid;
-  grid-template-columns: auto auto;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
 }
 
 .plantProfileImage img {
   border-radius: 4px;
+  width: 100%;
+  min-width: 250px;
 }
 
 .plantProfileButtonArea {
@@ -387,10 +415,7 @@ opacity: 0.6;
   background-color: var(--main-green-very-light);
   box-shadow: 0 0 20px var(--main-neutral-dark_rgba);
 }
-.subtitle {
-  text-align: left;
-  padding: 10px;
-}
+
 .finalImg {
     display: block;
     margin-left: auto;
@@ -435,17 +460,84 @@ opacity: 0.6;
   text-transform: uppercase;
   font-weight: bold;
 }
-
+.center-align {
+  text-align: center;
+}
 .allPlantsGrid h4 {
   display: inline;
 }
 
-.quizPau {
-  text-align: center;
-  display: inline-block;
-text-align: -webkit-center;
-background-color: var(--main-beige-very-light);
-padding: 45px;
-  border-radius: 45px/15px;
+/* RESPONSIVE *****************************************************************/
+
+@media only screen and (max-width: 900px) {
+
+  .allPlantsGrid {
+    grid-template-columns: auto auto;
+  }
+
+  .plantProfileImage img {
+    min-width: 200px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .nav {
+    grid-template-columns: auto;
+  }
+
+  .headerTitle,
+  .nav .links {
+    text-align: center;
+  }
+
+  .plantProfileImage img {
+    border-radius: 4px;
+    min-width: 150px;
+  }
+}
+
+
+@media only screen and (max-width: 600px) {
+  .allPlantsGrid {
+    grid-template-columns: auto;
+  }
+
+  .greenify-text,
+  .featureImage {
+    transform: scale(0.8, 0.8);
+  }
+
+  .plant {
+    transform: scale(0.5, 0.5);
+  }
+
+  .footer {
+    min-height: 137px;
+  }
+
+  .footer span {
+    padding-top: 80px;
+  }
+
+  .plantProfileImage img {
+    border-radius: 4px;
+    min-width: 100px;
+  }
+
+}
+
+@media only screen and (max-width: 500px) {
+  .greenify-text,
+  .featureImage {
+    transform: scale(0.6, 0.6);
+  }
+
+  .quizPau {
+    text-align: center;
+    display: inline-block;
+  text-align: -webkit-center;
+  background-color: var(--main-beige-very-light);
+  padding: 45px;
+    border-radius: 45px/15px;
 
 }
