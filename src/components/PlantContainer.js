@@ -89,8 +89,8 @@ class Gallery extends Component {
           const plantpara = <div className="allPlantName"><p key={plant.id}>
              <Link to={ "/plants/" + plant.id }>
              <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
-             </Link>
-             <h4>{plant.name}</h4>{this.checkingdate(plant.created_at) ? <span className="newPlant">NEW</span> : ""}
+             </Link></p>
+           <p><h4>{plant.name}</h4>{this.checkingdate(plant.created_at) ? <span className="newPlant">NEW</span> : ""}
            </p>
            {this.props.availabilities.map((a) => {
              if (a.plant_id === plant.id) {

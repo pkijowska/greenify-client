@@ -228,7 +228,7 @@ a.headerTitle {
   object-fit: cover;
   max-height: 220px;
   box-shadow: 0 0 20px var(--main-neutral-dark_rgba);
-
+  margin: 10px 0;
 }
 
 /* PLANT PROFILE **************************************************************/
@@ -328,12 +328,16 @@ a.headerTitle {
 .centerForm {
   text-align: center;
 }
+.allPlantsShow {
+  margin: 15px 0 !important;
+}
 
 .centerForm input,
 .centerForm textarea,
 .centerForm img {
   margin: 0 auto;
 }
+
 
 input[type="checkbox"] {
   margin: 10px auto;
@@ -534,7 +538,7 @@ opacity: 0.6;
   }
 }
   .quizPau {
-    
+
   text-align: -webkit-center;
   background-color: var(--main-beige-very-light);
   padding: 45px;
