@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b8f70cae4f6ce7a8fb2027e43f1ffb02",
+    "revision": "9be7f2fe700f4719efe3c8c863a43d39",
     "url": "/greenify-client/index.html"
   },
   {
@@ -8,16 +8,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/greenify-client/static/css/2.cc034990.chunk.css"
   },
   {
-    "revision": "678ef2174d33d37e03bb",
-    "url": "/greenify-client/static/css/main.f127683a.chunk.css"
+    "revision": "634821b65df9b88c5245",
+    "url": "/greenify-client/static/css/main.7004b89f.chunk.css"
   },
   {
     "revision": "45e9191f07f5ba09e830",
     "url": "/greenify-client/static/js/2.b80f40ce.chunk.js"
   },
   {
-    "revision": "678ef2174d33d37e03bb",
-    "url": "/greenify-client/static/js/main.0f851306.chunk.js"
+    "revision": "634821b65df9b88c5245",
+    "url": "/greenify-client/static/js/main.ce3b89cc.chunk.js"
   },
   {
     "revision": "2ad510f999239f32cdeb",
