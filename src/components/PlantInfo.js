@@ -131,15 +131,7 @@ constructor(props){
     this.setState({rating: event.target.value});
   }
 
-  checkingdate() {
-    let checkdate = this.state.plantInfo.created_at;
-    console.log(checkdate);
-    let newInTown = 'New';
-    if (moment().format("l") == moment(checkdate).format("l")) {
-        return newInTown;
-      }
 
-    }
     componentDidMount() {
       if(!localStorage.getItem("jwt")) {
         return;
@@ -204,8 +196,6 @@ render(){
           <p><span className="plantProfileBold">Cost: </span>${this.state.plantInfo.cost}</p>
           <p><span className="plantProfileBold">Worth: </span>${this.state.plantInfo.worth}</p>
 
-          <p>{this.checkingdate()}</p>
-          <p><span className="plantProfileBold">Created </span>{moment(this.state.plantInfo.created_at).format('l')}</p>
           <p><span className="plantProfileBold">Description: </span>{this.state.plantInfo.description}</p>
         </div>
         { localStorage.getItem("jwt") ?
