@@ -66,13 +66,12 @@ class Gallery extends Component {
     return(
       <div className="allPlantsGrid">
         {this.props.plants.map((plant) => {
-
-          const plantpara = <p key={plant.id}>
+          const plantpara = <div className="allPlantName"><p key={plant.id}>
              {plant.name}
              <Link to={ "/plants/" + plant.id }>
              <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
              </Link>
-           </p>;
+           </p>;</div>
            console.log(plantpara);
            const query = this.props.query.toLowerCase();
            const name = plant.name.toLowerCase();
