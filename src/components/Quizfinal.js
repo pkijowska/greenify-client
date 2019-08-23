@@ -36,7 +36,7 @@ class Quizfinal extends React.Component {
                  <img src="https://images.unsplash.com/photo-1494516192674-b82b5f1e61dc?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="ccr" />
                 </div>
                 <div className="card-body">
-                  <h3>Do you know enough about plants?</h3>
+                  <h3>How green is your thumb?</h3>
                 </div>
             </div>
             <div className="back">
