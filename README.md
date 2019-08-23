@@ -88,6 +88,6 @@ npm run deploy
 
 The site is using the API backend ([which can be found here](https://lucyod10.github.io/greenify-client/#/). The api was developed in Ruby on Rails. There are 5 models, the relationship between them can be seen in this diagram:
 
-![Image](/src/images/dirt.png)
+![Image](/src/images/Entity_Relationship_diagram.png)
 
 [Click here to visit the site.](https://lucyod10.github.io/greenify-client/#/)
