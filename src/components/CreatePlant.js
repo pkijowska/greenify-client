@@ -11,6 +11,7 @@ class CreatePlant extends Component {
   constructor(){
     super();
     this.state = {
+      submitting: false,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -58,24 +59,30 @@ class CreatePlant extends Component {
       // a. first we create new plant object in server without images by calling /POST endpoint.
       // b. once the plant is created, we updated the plant with /PUT call which is not REST call but actually a multipart form submit which includes file. On server side, this PUT request will get the file content and upload it in Cloudinary and then update the plant object.
 
-      axios({method: 'post', url: PLANT_API, headers: {'Authorization': token}, data: { plant }})
-        .then(result => {
-          const formData = new FormData();
-          formData.append('file', this.state.file);
-            console.log(formData)
-            console.log(this.state.file);
-             const plantImage = PLANT_IMAGE_API + result.data.id + '.json';
-             axios({method: 'put', url: plantImage, headers: {'Authorization': token}, data: formData })
-               .then(res => {
-                 this.props.history.push('/plants');
-               });
+      if (this.state.submitting === false) {
+        console.log("submitting" + this.state.submitting);
+        this.setState({submitting: true});
+        axios({method: 'post', url: PLANT_API, headers: {'Authorization': token}, data: { plant }})
+          .then(result => {
+            const formData = new FormData();
+            formData.append('file', this.state.file);
+              console.log(formData)
+              console.log(this.state.file);
+               const plantImage = PLANT_IMAGE_API + result.data.id + '.json';
+               axios({method: 'put', url: plantImage, headers: {'Authorization': token}, data: formData })
+                 .then(res => {
+                   this.props.history.push('/plants');
+                   this.setState({submitting: false});
+                 });
 
-          //this.props.history.push("/plants");
+            //this.props.history.push("/plants");
 
-        })
-        .catch(error => {
-          console.log(error);
-        });
+          })
+          .catch(error => {
+            console.log(error);
+          });
+      }
+
   }
 
   render() {
