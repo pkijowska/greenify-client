@@ -42,8 +42,28 @@ var data = [{
   {
     question: "Which colour light is the most important for plant growth and flowering?",
     answers: ["Red and green", "Blue and red"],
+    correct: 2
+  },
+  {
+    question: "What country is named after a tree?",
+    answers: ["Peru", "Brazil"],
+    correct: 2
+  },
+  {
+    question: "Where does the suicide plant grow?",
+    answers: ["Malaysia", "Australia"],
+    correct: 2
+  },
+  {
+    question: "Where was the first founded botanical garden?",
+    answers: ["Vatican", "Italy"],
     correct: 1
   },
+  {
+    question: "One of the below is the name of the flower?",
+    answers: ["Hooker's Lips", "Lips of an angel"],
+    correct: 1
+  }
 ];
 
 class Quiz1 extends Component {
@@ -55,7 +75,7 @@ class Quiz1 extends Component {
       index: 0,
       isgamefinished: false,
       quizStart:false,
-      quizz: data.sort(() => Math.random() - 0.5).slice(0, 6)
+      quizz: data.sort(() => Math.random() - 0.5).slice(0, 5)
     }
 
       console.log(this.state.quizz);

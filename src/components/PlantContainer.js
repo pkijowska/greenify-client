@@ -6,6 +6,7 @@ import serverURL from "../ServerURL";
 import moment from "moment";
 
 const SERVER_URL = serverURL('plants.json');
+const SERVER_AVAIL_URL = serverURL('availabilities');
 
 
 class PlantContainer extends Component {
@@ -13,6 +14,7 @@ class PlantContainer extends Component {
       super();
       this.state={
         plants : [],
+        availabilities : [],
         query : ""
       };
 
@@ -27,6 +29,14 @@ class PlantContainer extends Component {
       });
     };
     fetchPlants();
+
+    const fetchAvailabilities =() => {
+      axios.get(SERVER_AVAIL_URL).then((result) => {
+        this.setState({availabilities: result.data});
+        setTimeout(fetchAvailabilities, 40000);
+      });
+    };
+    fetchAvailabilities();
   }
 
     _handleSubmit (event) {
@@ -54,7 +64,7 @@ class PlantContainer extends Component {
         <input type="submit" value="Filter" />
         </form>
 
-        <Gallery plants={this.state.plants} query={this.state.query}/>
+        <Gallery plants={this.state.plants} availabilities={this.state.availabilities} query={this.state.query}/>
       </div>
     )
   }
@@ -81,8 +91,14 @@ class Gallery extends Component {
              <Image cloudName="dto4pzoz6" publicId={plant.images} width="300" className="allPlantsShow" />
              </Link>
              <h4>{plant.name}</h4>{this.checkingdate(plant.created_at) ? <span className="newPlant">NEW</span> : ""}
+           </p>
+           {this.props.availabilities.map((a) => {
+             if (a.plant_id === plant.id) {
+               return <p>Rent me from {moment(a.from).format('ll')} <br /> to {moment(a.to).format('ll')}</p>
+             }
+           })}
 
-           </p></div>
+           </div>
            console.log(plantpara);
            const query = this.props.query.toLowerCase();
            const name = plant.name.toLowerCase();
