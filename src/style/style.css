@@ -533,11 +533,13 @@ opacity: 0.6;
   }
 }
   .quizPau {
-    text-align: center;
-    display: inline-block;
+    
   text-align: -webkit-center;
   background-color: var(--main-beige-very-light);
   padding: 45px;
     border-radius: 45px/15px;
+    width: 718px;
+display: block;
+margin: 0 auto;
 
 }
