@@ -196,6 +196,17 @@ a.headerTitle {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 15px;
+
+}
+.allPlantName {
+    display: block;
+    font-size: 1.17em;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    text-shadow: 2px 2px var(--main-green-very-light)
 }
 
 
@@ -204,6 +215,8 @@ a.headerTitle {
   display: block;
   object-fit: cover;
   max-height: 220px;
+  box-shadow: 0 0 20px var(--main-neutral-dark_rgba);
+
 }
 
 /* PLANT PROFILE **************************************************************/
@@ -390,10 +403,7 @@ opacity: 0.6;
   background-color: var(--main-green-very-light);
   box-shadow: 0 0 20px var(--main-neutral-dark_rgba);
 }
-.subtitle {
-  text-align: left;
-  padding: 10px;
-}
+
 .finalImg {
     display: block;
     margin-left: auto;
@@ -438,7 +448,9 @@ opacity: 0.6;
   text-transform: uppercase;
   font-weight: bold;
 }
-
+.center-align {
+  text-align: center;
+}
 .allPlantsGrid h4 {
   display: inline;
 }
