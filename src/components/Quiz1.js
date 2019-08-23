@@ -26,7 +26,7 @@ var data = [{
   },
   {
     question: "What do plants need to grow and survive?",
-    answers: ["Sunlight", "Sand"],
+    answers: ["Sunlight", "sand"],
     correct: 1
   },
   {
@@ -35,15 +35,30 @@ var data = [{
     correct: 2
   },
   {
-    question: "Which seed will grow best?",
-    answers: ["A seed planted in wet soil", "Water planted seed every day"],
+    question: "Which colour light is the most important for plant growth and flowering?",
+    answers: ["Red and green", "Blue and red"],
+    correct: 2
+  },
+  {
+    question: "What country is named after a tree?",
+    answers: ["Peru", "Brazil"],
+    correct: 2
+  },
+  {
+    question: "Where does the suicide plant grow?",
+    answers: ["Malaysia", "Australia"],
+    correct: 2
+  },
+  {
+    question: "Where was the first founded botanical garden?",
+    answers: ["Vatican", "Italy"],
     correct: 1
   },
   {
-    question: "Which colour light is the most important for plant growth and flowering?",
-    answers: ["Red and green", "Blue and red"],
+    question: "One of the below is the name of the flower?",
+    answers: ["Hooker's Lips", "Lips of an angel"],
     correct: 1
-  },
+  }
 ];
 
 class Quiz1 extends Component {
@@ -55,7 +70,7 @@ class Quiz1 extends Component {
       index: 0,
       isgamefinished: false,
       quizStart:false,
-      quizz: data.sort(() => Math.random() - 0.5).slice(0, 6)
+      quizz: data.sort(() => Math.random() - 0.5).slice(0, 5)
     }
 
       console.log(this.state.quizz);
@@ -132,7 +147,7 @@ class Quiz1 extends Component {
   render () {
     return (
       <div className="backgroundimg center-align">
-        <h1 className="title"> Quizz about Plants </h1>
+        <h1 className="title"> How green is your thumb? </h1>
         <div className= {this.state.quizStart ? 'hidden quizEndDiv': 'quizEndDiv'}  >
           <h2 className="subtitle">Do you have the green thumbs and know-how to ace this quiz on plants and flowers? Challenge yourself to get 100%</h2>
           <button className="answerBtn" onClick ={this.handleClickStart}>Start the Quiz</button>
@@ -149,7 +164,7 @@ class Quiz1 extends Component {
             </button>
         </div>
         <div className={this.state.isgamefinished ? '' : 'hidden'}>
-            <h1>Your knowledge on plants is: {((this.state.score/this.state.quizz.length)*100).toFixed(2)}%</h1>
+            <h1>Your thumb is {((this.state.score/this.state.quizz.length)*100).toFixed(0)}% green</h1>
             <img className="finalImg" src = {this.displayPlants((this.state.score/this.state.quizz.length)*100)}/>
             <button className="answerBtn" onClick = {this.handleReset}>Reset</button>
         </div>

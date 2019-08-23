@@ -92,7 +92,7 @@ class Quiztest extends React.Component {
 }
 
 whatPlant() {
-     if ((this.state.correct===3) && (this.state.count === 5)) {
+     if ((this.state.correct===3 || this.state.correct===5) && (this.state.count === 5)) {
        return <div> <h1> Your spirit plant is : {this.state.plantName1} </h1> <p> You are protective, friendly, and people can count on you to get things done! </p>
           <p> Are you interested in renting it out? Click on the picture below: </p>
        <Link to={ "/plants/" + this.state.maranta.id }>
@@ -112,7 +112,7 @@ whatPlant() {
     else if ((this.state.correct===4 || this.state.correct===1) && (this.state.count === 5)){
       return <div> <h2>Your spirit plant is : You are a lotus flower! </h2> <p>You're beautiful inside and out and known to be quite charismatic and wise! </p> <p>Are you interested in renting it out? Click on the picture below: </p>
       <Link to={ "/plants/" + this.state.lotus.id }>
-      <Image cloudName="dto4pzoz6" publicId={this.state.lotus.images} width="300" className="allPlantsShow" />
+      < Image cloudName="dto4pzoz6" className="quizPau" publicId={this.state.lotus.images} width="300" className="allPlantsShow" />
       </Link>
 
      </div> ;
@@ -128,7 +128,7 @@ whatPlant() {
 
   render(){
   return(
-    <div>
+    <div className="quizPau">
 <h1 class="quiztest"> What is your spirit plant? </h1>
 <h3 class="quiztest"> Answer questions below to find out: </h3>
       {(this.state.count<5) && <Layout
@@ -141,7 +141,7 @@ whatPlant() {
 
 
     {this.whatPlant()}
-    
+
 
     </div>
   )
