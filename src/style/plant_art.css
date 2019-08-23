@@ -85,7 +85,6 @@
   width: 80%;
   margin: auto;
   display: flex;
-  height: 60vh;
   align-items: center;
 }
 .card-container {
@@ -147,6 +146,8 @@ backface-visibility: hidden;
   display: block;
   padding-top: 40px;
   font-weight: bold;
+  padding-left: 10px;
+
 }
 
   .flipbutton {
@@ -169,8 +170,4 @@ transform: rotateY(180deg);
 
 .em{
   padding-left: 120px;
-}
-
-.titleCard {
-
 }

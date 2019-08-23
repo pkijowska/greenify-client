@@ -20,8 +20,8 @@ class Quizfinal extends React.Component {
                 </div>
               </div>
               <div className="back">
-                <p className="pelBack">What is your spirit plant?
-      Answer questions to find out and check what plant suit your personality!</p>
+                <p className="pelBack">What is your spirit plant?</p>
+        <p className="pelBack">Answer questions to find out and check what plant suit your personality!</p>
 
                 <br />
                 <button className="flipbutton"><Link to={ "/quiztest/"}> Take me to the quiz! </Link></button>
@@ -40,7 +40,7 @@ class Quizfinal extends React.Component {
                 </div>
             </div>
             <div className="back">
-                <p className="pelBack">Did you know there are 391,000 plant species in the world? Check your knowledge on plants! </p>
+                <p className="pelBack">Did you know there are 391,000 plant species in the world?</p><p className="pelBack"> Check your knowledge on plants! </p>
 
                 <button className="flipbutton"><Link to={ "/quiz1/"}> Take me to the quiz! </Link></button>
             </div>

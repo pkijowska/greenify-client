@@ -22,6 +22,8 @@ html {
 
   --main-violet-light: #B694DA;
   --main-violet2-very-light: #d9b5e6;
+
+  --main-beige-very-light: #ede1ce;
 }
 
 
@@ -420,7 +422,7 @@ opacity: 0.6;
 .quiztest {
   color: var(--main-green-med);
     font-family: 'Satisfy', cursive;
-    font-size: 50px;
+    font-size: 35px;
     text-align: center;
 }
 
@@ -436,4 +438,14 @@ opacity: 0.6;
 
 .allPlantsGrid h4 {
   display: inline;
+}
+
+.quizPau {
+  text-align: center;
+  display: inline-block;
+text-align: -webkit-center;
+background-color: var(--main-beige-very-light);
+padding: 45px;
+  border-radius: 45px/15px;
+
 }
